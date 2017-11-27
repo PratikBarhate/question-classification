@@ -51,6 +51,9 @@ out/
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
+.idea/
+*.iml
+*.iws
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
