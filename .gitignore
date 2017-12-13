@@ -52,6 +52,7 @@ out/
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea/
+.idea/*
 *.iml
 *.iws
 
