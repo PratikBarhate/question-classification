@@ -66,4 +66,6 @@ out/
 .idea/**/uiDesigner.xml
 
 # project specific
+# intermediate files
 computed-data/
+**/computed-data/
