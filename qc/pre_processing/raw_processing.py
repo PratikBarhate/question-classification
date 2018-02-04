@@ -1,5 +1,5 @@
 import re
-from utils.file_ops import read_file
+from qc.utils.file_ops import read_file
 
 
 def pre_process(raw_sentence):

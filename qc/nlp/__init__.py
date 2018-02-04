@@ -1,6 +1,6 @@
-import pre_processing
-from utils.file_ops import write_obj
-from nlp.proc_coarse import com_annotations
+from qc import pre_processing
+from qc.utils.file_ops import write_obj
+from qc.nlp.proc_coarse import com_annotations
 from multiprocessing.pool import ThreadPool
 import datetime
 

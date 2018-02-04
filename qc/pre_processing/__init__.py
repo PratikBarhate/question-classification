@@ -1,5 +1,5 @@
-from pre_processing.raw_processing import read_raw_data, clean_sentences
-from utils.file_ops import write_str_file
+from qc.pre_processing.raw_processing import read_raw_data, clean_sentences
+from qc.utils.file_ops import write_str_file
 from multiprocessing.pool import ThreadPool
 
 

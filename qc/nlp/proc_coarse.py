@@ -1,7 +1,5 @@
 import spacy
-from nltk.tag import StanfordNERTagger
-from nltk.tokenize import word_tokenize
-from utils.file_ops import read_file, read_key
+from qc.utils.file_ops import read_file
 
 
 def com_annotations(data_type: str):

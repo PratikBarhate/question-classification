@@ -3,6 +3,9 @@ import os
 import pickle
 
 
+text_file_encoding = "utf8"
+
+
 def read_key(file_name):
     """
     :argument:
@@ -10,7 +13,7 @@ def read_key(file_name):
     :return:
         value: String - value defined in properties.conf for the given key.
     """
-    config = ConfigObj('../resources/properties.conf')
+    config = ConfigObj("../../resources/properties.conf")
     value = config[file_name]
     return value
 
@@ -28,7 +31,7 @@ def read_file(file_name):
         file: TextIOWrapper for the file corresponding to the `file_name` key in properties.conf
     """
     try:
-        file = open(read_key(file_name), "r", encoding="utf8")
+        file = open(read_key(file_name), "r", encoding=text_file_encoding)
         return True, file
     except IOError as e:
         print("File IO Error :: Cannot open " + read_key(file_name) + "\n" + str(e))
@@ -51,7 +54,7 @@ def write_str_file(str_list, file_name):
             print("Error creating director " + file_value + "\n" + str(err))
             return False
     try:
-        with open(file_value, "w", encoding="utf8") as file:
+        with open(file_value, "w", encoding=text_file_encoding) as file:
             str_to_write = "\n".join(str_list)
             file.write(str_to_write)
     except IOError as e:
