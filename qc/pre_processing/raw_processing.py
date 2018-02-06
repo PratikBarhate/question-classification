@@ -24,11 +24,13 @@ def remove_extra_spaces(raw_sentence):
     return clean_str
 
 
-def read_raw_data(file_name):
+def read_raw_data(file_key, rp):
     """
     :argument:
-        :param file_name: A string which represents the raw data file, in properties.conf,
+        :param file_key: A string which represents the raw data file, in properties.conf,
                           used for the process (experiment).
+        :param rp: Absolute path of the root directory of the project
+
     :Expects:
         Expected line format "coarse_class:fine_class This is the question string"
     :returns:
@@ -44,7 +46,7 @@ def read_raw_data(file_name):
     coarse_classes_list = []
     fine_classes_list = []
     questions_list = []
-    flag, file = read_file(file_name)
+    flag, file = read_file(file_key, rp)
     if flag:
         for line in file:
             space_separated_row = line.split(" ")

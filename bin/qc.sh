@@ -26,10 +26,10 @@ else
   export PYTHONPATH="${APP_HOME}"
   if [ ${1} == "pre-process" ]
   then
-    python -m qc.pre_processing
+    python -m qc.pre_processing "${APP_HOME}"
   elif [ ${1} == "nlp" ]
   then
-    python -m qc.nlp.__init__.py
+    python -m qc.nlp "${APP_HOME}"
   else
     echo "Invalid first argument. ${1} as first argument is unexpected."
   fi

@@ -2,7 +2,7 @@ import spacy
 from qc.utils.file_ops import read_file
 
 
-def com_annotations(data_type: str):
+def com_annotations(data_type: str, rp: str):
     """
     Function gets all the annotations, Lemma, POS, IS_STOPWORD etc., in the form of spaCy doc container for all the
     rows (lines) in the text data and saves the object of list of the doc (container) for each line.
@@ -10,13 +10,14 @@ def com_annotations(data_type: str):
 
     :argument:
         :param data_type: String either `training` or `test`
+        :param rp: Absolute path of the root directory of the project
     :return:
         boolean_flag: True for successful operation.
         all_annotations: List of doc (spaCy containers) of all the lines in the data.
     """
     nlp = spacy.load("en_core_web_lg")
     all_annotations = []
-    read_flag, file = read_file("raw_sentence_{0}".format(data_type))
+    read_flag, file = read_file("raw_sentence_{0}".format(data_type), rp)
     if read_flag:
         for line in file:
             doc = nlp(line)

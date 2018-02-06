@@ -3,22 +3,23 @@ from qc.utils.file_ops import write_str_file
 from multiprocessing.pool import ThreadPool
 
 
-def dataset_raw_prep(data_type):
+def dataset_raw_prep(data_type, rp: str):
     """
     :argument:
         :param data_type: String either `training` or `test`
+        :param rp: Absolute path of the root directory of the project
     :Execution:
         Calls various raw_processing functions on the given raw text data
     :return:
         boolean flag: True for successful operation
     """
     data = "training" if data_type == "training" else "test"
-    flag, coarse_class, fine_class, questions = read_raw_data("{0}_data".format(data))
+    flag, coarse_class, fine_class, questions = read_raw_data("{0}_data".format(data), rp)
     if flag:
         q_clean = clean_sentences(questions)
-        c = write_str_file(coarse_class, "coarse_classes_{0}".format(data))
-        f = write_str_file(fine_class, "fine_classes_{0}".format(data))
-        q = write_str_file(q_clean, "raw_sentence_{0}".format(data))
+        c = write_str_file(coarse_class, "coarse_classes_{0}".format(data), rp)
+        f = write_str_file(fine_class, "fine_classes_{0}".format(data), rp)
+        q = write_str_file(q_clean, "raw_sentence_{0}".format(data), rp)
         if not q:
             print("- Error while writing questions file for " + data)
             return False
@@ -34,13 +35,13 @@ def dataset_raw_prep(data_type):
         return False
 
 
-def main():
+def main(project_root_path: str):
     print("\n* Raw Data Processing")
     # Create two threads for processing training and test raw files
     pool = ThreadPool(processes=2)
     # start the threads and wait for them to finish
-    train_result = pool.apply_async(dataset_raw_prep, args=["training"])
-    test_result = pool.apply_async(dataset_raw_prep, args=["test"])
+    train_result = pool.apply_async(dataset_raw_prep, args=["training", project_root_path])
+    test_result = pool.apply_async(dataset_raw_prep, args=["test", project_root_path])
     train_val = train_result.get()
     test_val = test_result.get()
     if not train_val:
@@ -52,4 +53,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # specify the Project root path as per the system used
+    main("/Users/tkmahxk/Pratik/Study/Projects/question-classification")
