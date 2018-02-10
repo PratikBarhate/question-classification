@@ -52,6 +52,6 @@ def main(project_root_path: str):
         print("- Raw text splitting done for training and test data")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # specify the Project root path as per the system used
-    main("/Users/tkmahxk/Pratik/Study/Projects/question-classification")
+    main("Absolute Path of the project")

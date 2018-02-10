@@ -1,4 +1,5 @@
 import spacy
+from sner import Ner
 from qc.utils.file_ops import read_file
 
 
@@ -24,5 +25,30 @@ def com_annotations(data_type: str, rp: str):
             all_annotations.append(doc)
         file.close()
         return True, all_annotations
+    else:
+        return False
+
+
+def com_ner(data_type: str, rp: str):
+    """
+    Function gets the NER tags of the sentence using the sequential model pre-trained by Stanford NLP programs.
+
+     :argument:
+        :param data_type: String either `training` or `test`
+        :param rp: Absolute path of the root directory of the project
+    :return:
+        boolean_flag: True for successful operation.
+        all_ners: List of NER tags of each line
+    """
+    # initialize the tagger corresponding to StandforNER server
+    tagger = Ner(host="localhost", port=9199)
+    all_ners = []
+    read_flag, file = read_file("raw_sentence_{0}".format(data_type), rp)
+    if read_flag:
+        for line in file:
+            word_tags = tagger.get_entities(line)
+            ner_tags = [x[1] for x in word_tags]
+            all_ners.append(" ".join(ner_tags))
+        return True, all_ners
     else:
         return False

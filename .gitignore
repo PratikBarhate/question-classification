@@ -20,9 +20,7 @@
 *.jar
 *.tar
 *.zip
-# include the packages only from following directories
-!lib/*.jar
-!lib/*.gz
+
 
 # Logs and databases #
 ######################
@@ -69,7 +67,16 @@ out/
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 
+# deamon processes (nohup)
+*.out
+
 # project specific
 # intermediate files
 computed-data/
 **/computed-data/
+
+
+# include the packages only from following directories
+# external libs and compressed files
+!resources/lib/*.jar
+!resources/external_classifiers/*.gz

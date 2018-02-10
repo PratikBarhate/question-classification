@@ -15,6 +15,7 @@ APP_HOME="`dirname "${SCRIPT_DIRECTORY}"`"
 
 
 num_of_arg=$#
+stanford_ner_port=9199
 
 
 if [ ${num_of_arg} -eq 0 ]
@@ -23,13 +24,28 @@ then
   echo "1. pre-process (to only split the raw data and their classes in different text file)"
   echo "2. nlp (to complete all the NLP operations)"
 else
-  export PYTHONPATH="${APP_HOME}"
   if [ ${1} == "pre-process" ]
   then
     python -m qc.pre_processing "${APP_HOME}"
   elif [ ${1} == "nlp" ]
   then
+  # remove the previous `nohup.out` as to avoid confusion from previous executions
+  if [ -f "${APP_HOME}/nohup.out" ]
+  then
+    rm ${APP_HOME}/nohup.out
+  fi
+  # end of if to check and delete `nohup.out` file
+  # command to start StanfordNER java process
+    nohup java -Djava.ext.dirs=${APP_HOME}/resources/lib \
+    -cp ${APP_HOME}/resources/lib/stanford-ner.jar edu.stanford.nlp.ie.NERServer \
+    -port ${stanford_ner_port} \
+    -loadClassifier ${APP_HOME}/resources/external_classifiers/english.all.3class.distsim.crf.ser.gz &
+    # capture the ner process id
+    ner_pid=$!
+    # start the python process
     python -m qc.nlp "${APP_HOME}"
+    # kill the StanfordNER server
+    kill -15 "${ner_pid}"
   else
     echo "Invalid first argument. ${1} as first argument is unexpected."
   fi
