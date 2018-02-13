@@ -1,6 +1,7 @@
-import spacy
-from sner import Ner
+from qc.pre_processing.raw_processing import remove_endline_char
 from qc.utils.file_ops import read_file
+from sner import Ner
+import spacy
 
 
 def com_annotations(data_type: str, rp: str):
@@ -21,7 +22,7 @@ def com_annotations(data_type: str, rp: str):
     read_flag, file = read_file("raw_sentence_{0}".format(data_type), rp)
     if read_flag:
         for line in file:
-            doc = nlp(line)
+            doc = nlp(remove_endline_char(line))
             all_annotations.append(doc)
         file.close()
         return True, all_annotations
@@ -40,7 +41,7 @@ def com_ner(data_type: str, rp: str):
         boolean_flag: True for successful operation.
         all_ners: List of NER tags of each line
     """
-    # initialize the tagger corresponding to StandforNER server
+    # initialize the tagger corresponding to StandfordNER server
     tagger = Ner(host="localhost", port=9199)
     all_ners = []
     read_flag, file = read_file("raw_sentence_{0}".format(data_type), rp)

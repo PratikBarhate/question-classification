@@ -18,9 +18,31 @@ def remove_extra_spaces(raw_sentence):
     :argument:
         :param raw_sentence: String
     :returns:
-        clean_str: String which does not contain new line character and more than 1 continuous white spaces.
+        clean_str: String which does not contain more than 1 continuous white spaces.
     """
-    clean_str = re.sub(r"\s\s+|\n", r" ", raw_sentence)
+    clean_str = re.sub(r"\s\s+", r" ", raw_sentence)
+    return clean_str
+
+
+def remove_space_before_apost(raw_sentence):
+    """
+    :argument:
+        :param raw_sentence: String
+    :returns:
+        clean_str: String which does not contain more than 1 continuous white spaces.
+    """
+    clean_str = re.sub(r"\s'", r"'", raw_sentence)
+    return clean_str
+
+
+def remove_endline_char(raw_sentence):
+    """
+    :argument:
+        :param raw_sentence: String
+    :returns:
+        clean_str: String which does not contain new line character
+    """
+    clean_str = re.sub(r"\n", r"", raw_sentence)
     return clean_str
 
 
@@ -71,6 +93,7 @@ def clean_sentences(questions_list):
     """
     clean_questions_list = []
     for q in questions_list:
-        c = remove_extra_spaces(pre_process(q))
-        clean_questions_list.append(c)
+        c = remove_space_before_apost(remove_extra_spaces(pre_process(q)))
+        n = remove_endline_char(c)
+        clean_questions_list.append(n)
     return clean_questions_list

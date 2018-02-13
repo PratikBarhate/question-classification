@@ -2,7 +2,7 @@ from configobj import ConfigObj
 import os
 import pickle
 
-
+# Every write operation is in overwrite mode
 text_file_encoding = "utf8"
 
 
@@ -89,3 +89,25 @@ def write_obj(obj, file_key, rp):
         print("File IO Error :: Cannot write object to " + key_value + "\n" + str(e))
         return False
     return True
+
+
+def read_obj(file_key, rp):
+    """
+    :argument:
+        :param file_key: A string which represents the raw data file, in properties.conf,
+                          used for the process (experiment).
+        :param rp: Absolute path of the root directory of the project
+        # Note: File should be using UTF-8 encoding. Change the encoding as needed.
+    :exception:
+        :except IOError: This may occur because of many reasons. e.g file is missing or corrupt file or wrong file path
+    :return:
+        boolean_flag: True for successful read operation.
+        file: TextIOWrapper for the file corresponding to the `file_name` key in properties.conf
+    """
+    try:
+        file = open(read_key(file_key, rp), "rb")
+        obj = pickle.load(file)
+        return True, obj
+    except IOError as e:
+        print("File IO Error :: Cannot open " + read_key(file_key, rp) + "\n" + str(e))
+        return False
