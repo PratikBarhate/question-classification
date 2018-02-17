@@ -24,10 +24,7 @@ then
   echo "1. pre-process (to only split the raw data and their classes in different text file)"
   echo "2. nlp (to complete all the NLP operations)"
 else
-  if [ ${1} == "pre-process" ]
-  then
-    python -m qc.pre_processing "${APP_HOME}"
-  elif [ ${1} == "nlp" ]
+  if [ ${1} == "nlp" ]
   then
   # remove the previous `nohup.out` as to avoid confusion from previous executions
   if [ -f "${APP_HOME}/nohup.out" ]

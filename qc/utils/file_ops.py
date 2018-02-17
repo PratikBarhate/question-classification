@@ -14,7 +14,11 @@ def read_key(file_key: str, rp: str):
     :return:
         value: String - value defined in properties.conf for the given key, appended to the root path of the project.
     """
-    config = ConfigObj("{0}/resources/properties.conf".format(rp))
+    if file_key.endswith("vec") or file_key.endswith("model"):
+        res_p = "/".join(rp.split("/")[:-1])
+    else:
+        res_p = rp
+    config = ConfigObj("{0}/resources/properties.conf".format(res_p))
     value = rp + "/" + config[file_key]
     return value
 

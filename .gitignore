@@ -73,6 +73,10 @@ out/
 # project specific
 # intermediate files
 computed-data/
+svm/
+lr/
+nn/
+xgboost/
 **/computed-data/
 
 
