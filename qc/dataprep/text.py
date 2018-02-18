@@ -15,13 +15,11 @@ def text_ft_vec(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
         boolean_flag: True for successful operation.
         text_ft: feature vectorized to be used in ML algorithms.
     """
-    # TODO check proptype should be one among the list which is expected
-    # TODO add this check in each init file
     if prop_type == "word":
-        flag, doc_obj = read_obj("{1}_{0}_doc".format(data_type, cat_type), rp)
+        flag, doc_list_obj = read_obj("{1}_{0}_doc".format(data_type, cat_type), rp)
         if flag:
             text_data = []
-            for doc in doc_obj:
+            for doc in doc_list_obj:
                 text_data.append(doc.text)
             vflag, vectorizer = get_vect(data_type, rp, prop_type, ml_algo, cat_type, text_data)
             if vflag:
@@ -43,7 +41,7 @@ def text_ft_vec(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
         else:
             return False
     else:
-        print("Error: Invalid `prop_type` to function `text_ft_vec`")
+        print("- Error: Invalid `prop_type` to function `text_ft_vec`")
         return False
 
 
