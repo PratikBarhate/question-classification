@@ -79,6 +79,11 @@ nn/
 xgboost/
 **/computed-data/
 
+!qc/svm/
+!qc/lr/
+!qc/nn/
+!qc/xgboost/
+
 
 # include the packages only from following directories
 # external libs and compressed files

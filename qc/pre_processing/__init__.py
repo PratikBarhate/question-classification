@@ -1,38 +1,5 @@
-from qc.pre_processing.raw_processing import read_raw_data, clean_sentences
-from qc.utils.file_ops import write_str_file
+from qc.pre_processing.raw_processing import dataset_raw_prep
 from multiprocessing.pool import ThreadPool
-
-
-def dataset_raw_prep(data_type, rp: str):
-    """
-    :argument:
-        :param data_type: String either `training` or `test`
-        :param rp: Absolute path of the root directory of the project
-    :Execution:
-        Calls various raw_processing functions on the given raw text data
-    :return:
-        boolean flag: True for successful operation
-    """
-    data = "training" if data_type == "training" else "test"
-    flag, coarse_class, fine_class, questions = read_raw_data("{0}_data".format(data), rp)
-    if flag:
-        q_clean = clean_sentences(questions)
-        c = write_str_file(coarse_class, "coarse_classes_{0}".format(data), rp)
-        f = write_str_file(fine_class, "fine_classes_{0}".format(data), rp)
-        q = write_str_file(q_clean, "raw_sentence_{0}".format(data), rp)
-        if not q:
-            print("- Error while writing questions file for " + data)
-            return False
-        if not c:
-            print("- Error while writing coarse class file for " + data)
-            return False
-        if not f:
-            print("- Error while writing fine class file for " + data)
-            return False
-        return True
-    else:
-        print("- Error is reading and splitting " + data + " data")
-        return False
 
 
 def main(project_root_path: str):
