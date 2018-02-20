@@ -1,5 +1,6 @@
-def main(project_root_path: str):
-    print("data prep in dev phase")
+def main(arg: str):
+    # For future implementation if required
+    print("dataprep main function does nothing")
 
 
 if __name__ == "__main__":
