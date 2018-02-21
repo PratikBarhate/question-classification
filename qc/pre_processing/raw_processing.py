@@ -1,5 +1,6 @@
 from qc.utils.file_ops import write_str_file
 from qc.utils.file_ops import read_file
+from multiprocessing.pool import ThreadPool
 import re
 
 
@@ -130,3 +131,20 @@ def dataset_raw_prep(data_type, rp: str):
     else:
         print("- Error is reading and splitting " + data + " data")
         return False
+
+
+def execute(project_root_path: str):
+    print("\n* Raw Data Processing")
+    # Create two threads for processing training and test raw files
+    pool = ThreadPool(processes=2)
+    # start the threads and wait for them to finish
+    train_result = pool.apply_async(dataset_raw_prep, args=["training", project_root_path])
+    test_result = pool.apply_async(dataset_raw_prep, args=["test", project_root_path])
+    train_val = train_result.get()
+    test_val = test_result.get()
+    if not train_val:
+        print("- Error: In text splitting for training data")
+    if not test_val:
+        print("- Error: In text splitting for test data")
+    if train_val and test_val:
+        print("- Raw text splitting done for training and test data")
