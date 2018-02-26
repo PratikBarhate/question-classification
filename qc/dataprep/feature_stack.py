@@ -1,5 +1,4 @@
-from qc.dataprep.numeric import ann_hashed_ft
-from qc.dataprep.text import text_ft_vec
+from qc.dataprep.text_features import text_ft_arr
 from numpy import hstack
 
 
@@ -15,11 +14,13 @@ def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
         boolean_flag: True for successful operation.
         x_all_ft: numpy array of features to be feed to a Machine Learning algorithm.
     """
-    all_num_ft = ann_hashed_ft(data_type, rp, cat_type)
-    x_num_ft = hstack(tuple(all_num_ft))
-    # TODO check results after standardizing num ft once a ml algorithm is ready to test
-    w_ft = text_ft_vec(data_type, rp, "word", ml_algo, cat_type)
-    n_ft = text_ft_vec(data_type, rp, "ner", ml_algo, cat_type)
-    x_text_ft = hstack((w_ft, n_ft))
-    x_all_ft = hstack((x_num_ft, x_text_ft))
+    wflag, w_ft = text_ft_arr(data_type, rp, "word", ml_algo, cat_type)
+    pflag, p_ft = text_ft_arr(data_type, rp, "pos", ml_algo, cat_type)
+    tflag, t_ft = text_ft_arr(data_type, rp, "tag", ml_algo, cat_type)
+    dflag, d_ft = text_ft_arr(data_type, rp, "dep", ml_algo, cat_type)
+    sflag, s_ft = text_ft_arr(data_type, rp, "shape", ml_algo, cat_type)
+    aflag, a_ft = text_ft_arr(data_type, rp, "alpha", ml_algo, cat_type)
+    stflag, st_ft = text_ft_arr(data_type, rp, "stop", ml_algo, cat_type)
+    nflag, n_ft = text_ft_arr(data_type, rp, "ner", ml_algo, cat_type)
+    x_all_ft = hstack((w_ft, p_ft, t_ft, d_ft, s_ft, a_ft, st_ft, n_ft))
     return x_all_ft
