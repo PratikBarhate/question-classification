@@ -101,6 +101,46 @@ def clean_sentences(questions_list):
     return clean_questions_list
 
 
+def sep_fine_classes(coarse, fine):
+    """
+    :argument
+        :param coarse: Coarse class of the given row
+        :param fine: Fine class of the given row
+    :return:
+        abbr_class: List of class of questions belonging to ABBR coarse class.
+        desc_class: List of class of questions belonging to DESC coarse class.
+        enty_class: List of class questions belonging to ENTY coarse class.
+        hum_class: List of class of questions belonging to HUM coarse class.
+        loc_class: List of class of questions belonging to LOC coarse class.
+        num_class: List of class of questions belonging to NUM coarse class.
+    """
+    abbr_class = []
+    desc_class = []
+    enty_class = []
+    hum_class = []
+    loc_class = []
+    num_class = []
+    i = 0
+    for subclass in fine:
+        if coarse[i] == "ABBR":
+            abbr_class.append(subclass)
+        elif coarse[i] == "DESC":
+            desc_class.append(subclass)
+        elif coarse[i] == "ENTY":
+            enty_class.append(subclass)
+        elif coarse[i] == "HUM":
+            hum_class.append(subclass)
+        elif coarse[i] == "LOC":
+            loc_class.append(subclass)
+        elif coarse[i] == "NUM":
+            num_class.append(subclass)
+        else:
+            print("{0} is an unexpected coarse class".format(coarse[i]))
+        # increment i by one, so that the proper lines are match
+        i = i + 1
+    return abbr_class, desc_class, enty_class, hum_class, loc_class, num_class
+
+
 def dataset_raw_prep(data_type, rp: str):
     """
     :argument:
@@ -113,6 +153,16 @@ def dataset_raw_prep(data_type, rp: str):
     """
     data = "training" if data_type == "training" else "test"
     flag, coarse_class, fine_class, questions = read_raw_data("{0}_data".format(data), rp)
+    if data == "training":
+        abbr_class, desc_class, enty_class, hum_class, loc_class, num_class = sep_fine_classes(coarse_class, fine_class)
+        a = write_str_file(abbr_class, "abbr_classes_{0}".format(data), rp)
+        d = write_str_file(desc_class, "desc_classes_{0}".format(data), rp)
+        e = write_str_file(enty_class, "enty_classes_{0}".format(data), rp)
+        h = write_str_file(hum_class, "abbr_classes_{0}".format(data), rp)
+        lo = write_str_file(loc_class, "loc_classes_{0}".format(data), rp)
+        n = write_str_file(abbr_class, "num_classes_{0}".format(data), rp)
+        if not (a and d and e and h and lo and n):
+            print("- Error while writing sub classes files for " + data)
     if flag:
         q_clean = clean_sentences(questions)
         c = write_str_file(coarse_class, "coarse_classes_{0}".format(data), rp)
@@ -134,6 +184,12 @@ def dataset_raw_prep(data_type, rp: str):
 
 
 def execute(project_root_path: str):
+    """
+    :argument
+        :param project_root_path: Absolute Path of the project
+    :return:
+        None
+    """
     print("\n* Raw Data Processing")
     # Create two threads for processing training and test raw files
     pool = ThreadPool(processes=2)

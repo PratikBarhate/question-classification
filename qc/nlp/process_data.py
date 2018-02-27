@@ -83,6 +83,12 @@ def fine_prop_separation(data_type: str, rp: str, prop_type: str):
 
 
 def execute(project_root_path: str):
+    """
+    :argument
+        :param project_root_path: Absolute Path of the project
+    :return:
+        None
+    """
     # ensures pre_processing in done
     raw_processing.execute(project_root_path)
     # start timer
