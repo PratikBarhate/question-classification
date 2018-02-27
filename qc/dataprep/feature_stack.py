@@ -1,5 +1,5 @@
 from qc.dataprep.text_features import text_ft_arr
-from numpy import hstack
+from scipy.sparse import hstack
 
 
 def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
@@ -22,5 +22,5 @@ def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
     aflag, a_ft = text_ft_arr(data_type, rp, "alpha", ml_algo, cat_type)
     stflag, st_ft = text_ft_arr(data_type, rp, "stop", ml_algo, cat_type)
     nflag, n_ft = text_ft_arr(data_type, rp, "ner", ml_algo, cat_type)
-    x_all_ft = hstack((w_ft, p_ft, t_ft, d_ft, s_ft, a_ft, st_ft, n_ft))
+    x_all_ft = hstack([w_ft, p_ft, t_ft, d_ft, s_ft, a_ft, st_ft, n_ft])
     return x_all_ft

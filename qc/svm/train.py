@@ -26,12 +26,7 @@ def train_one_node(project_root_path: str, cat_type: str):
     rf, coarse_c = read_file("{0}_classes_training".format(cat_type), project_root_path)
     y_lb = [len(c) for c in coarse_c]
     machine = svm.SVC(kernel="rbf", C=1.0, gamma=0.0005)
-    print("\nft -> {0}".format(len(x_ft)))
-    print("\nlable -> {0}".format(len(y_lb)))
-    print(len(x_ft) == len(y_lb))
-    print("training started....-_-...")
     model = machine.fit(x_ft, y_lb)
-    print("training complete !!")
 
 
 train_one_node("/Users/tkmahxk/Pratik/Study/Projects/question-classification", "coarse")
