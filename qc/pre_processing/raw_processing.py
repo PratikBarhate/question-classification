@@ -158,7 +158,7 @@ def dataset_raw_prep(data_type, rp: str):
         a = write_str_file(abbr_class, "abbr_classes_{0}".format(data), rp)
         d = write_str_file(desc_class, "desc_classes_{0}".format(data), rp)
         e = write_str_file(enty_class, "enty_classes_{0}".format(data), rp)
-        h = write_str_file(hum_class, "abbr_classes_{0}".format(data), rp)
+        h = write_str_file(hum_class, "hum_classes_{0}".format(data), rp)
         lo = write_str_file(loc_class, "loc_classes_{0}".format(data), rp)
         n = write_str_file(abbr_class, "num_classes_{0}".format(data), rp)
         if not (a and d and e and h and lo and n):
