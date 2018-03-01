@@ -68,7 +68,7 @@ def train_one_node(rp: str, cat_type: str):
         boolean_flag: True for successful operation.
         model: trained SVC model
     """
-    x_ft = get_ft_obj("training", rp, "svm", "coarse")
+    x_ft = get_ft_obj("training", rp, "svm", cat_type)
     rf, labels = read_file("{0}_classes_training".format(cat_type), rp)
     y_lb = [remove_endline_char(c).strip() for c in labels]
     machine = svm.SVC(kernel="rbf", C=1.0, gamma=0.0005)

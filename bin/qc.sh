@@ -26,13 +26,13 @@ then
 else
   if [ ${1} == "nlp" ]
   then
-  # remove the previous `nohup.out` as to avoid confusion from previous executions
-  if [ -f "${APP_HOME}/nohup.out" ]
-  then
-    rm ${APP_HOME}/nohup.out
-  fi
-  # end of if to check and delete `nohup.out` file
-  # command to start StanfordNER java process
+    # remove the previous `nohup.out` as to avoid confusion from previous executions
+    if [ -f "${APP_HOME}/nohup.out" ]
+    then
+      rm ${APP_HOME}/nohup.out
+    fi
+    # end of if to check and delete `nohup.out` file
+    # command to start StanfordNER java process
     nohup java -Djava.ext.dirs=${APP_HOME}/resources/lib \
     -cp ${APP_HOME}/resources/lib/stanford-ner.jar edu.stanford.nlp.ie.NERServer \
     -port ${stanford_ner_port} \
@@ -43,6 +43,34 @@ else
     python -m qc.nlp "${APP_HOME}"
     # kill the StanfordNER server
     kill -15 "${ner_pid}"
+  elif [ ${1} == "train" ]
+  then
+    if [ ${num_of_arg} -eq 2 ]
+    then
+      if [ ${2} == "svm" ]
+      then
+        # start the python process
+        python -m qc.svm "train" "${APP_HOME}"
+      else
+        echo "${2} is an unexpected model. Not implemented"
+      fi
+    else
+      echo "Command 'train' expects one argument. Model: The class of model. e.g 'train svm' or 'train lr'"
+    fi
+  elif [ ${1} == "test" ]
+  then
+    if [ ${num_of_arg} -eq 2 ]
+    then
+      if [ ${2} == "svm" ]
+      then
+        # start the python process
+        python -m qc.svm "test" "${APP_HOME}"
+      else
+        echo "${2} is an unexpected model. Not implemented"
+      fi
+    else
+      echo "Command 'test' expects one argument. Model: The class of model. e.g 'test svm' or 'test lr'"
+    fi
   else
     echo "Invalid first argument. ${1} as first argument is unexpected."
   fi
