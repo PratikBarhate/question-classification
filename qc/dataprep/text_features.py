@@ -19,7 +19,10 @@ def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
     """
     list_doc_prop = ["word", "lemma", "pos", "tag", "dep", "shape", "alpha", "stop"]
     if prop_type in list_doc_prop:
-        flag, doc_list_obj = read_obj("{1}_{0}_doc".format(data_type, cat_type), rp)
+        if data_type == "training":
+            flag, doc_list_obj = read_obj("{1}_{0}_doc".format(data_type, cat_type), rp)
+        else:
+            flag, doc_list_obj = read_obj("coarse_{0}_doc".format(data_type), rp)
         if flag:
             text_data = get_info_doc(prop_type, doc_list_obj)
             vflag, vectorizer = get_vect(data_type, rp, prop_type, ml_algo, cat_type, text_data)
@@ -31,7 +34,10 @@ def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
         else:
             return False
     elif prop_type == "ner":
-        flag, ner_l = read_obj("{1}_{0}_ner".format(data_type, cat_type), rp)
+        if data_type == "training":
+            flag, ner_l = read_obj("{1}_{0}_ner".format(data_type, cat_type), rp)
+        else:
+            flag, ner_l = read_obj("coarse_{0}_ner".format(data_type), rp)
         if flag:
             vflag, vectorizer = get_vect(data_type, rp, prop_type, ml_algo, cat_type, ner_l)
             if vflag:

@@ -93,7 +93,7 @@ def execute(project_root_path: str):
     raw_processing.execute(project_root_path)
     # start timer
     start_nlp = datetime.datetime.now().timestamp()
-    print("\n* NLP")
+    print("\n* NLP - Process started")
     # Create 4 threads for processing training and test raw files
     # 2 Threads to compute annotations from spaCy lib
     # 2 Threads to compute NER tags from StanfordNER Client

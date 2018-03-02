@@ -10,13 +10,14 @@ import time
 def execute(project_root_path: str):
     """
     Starts 7 threads to train each of SVM models.
+
     :argument
         :param project_root_path: Absolute Path of the project
     :return:
         None
     """
     start_svm = datetime.datetime.now().timestamp()
-    print("\n* Support Vector Machine")
+    print("\n* Support Vector Machine (SVM) - Training started")
     pool = ThreadPool(processes=7)
     coarse_result = pool.apply_async(train_one_node, args=[project_root_path, "coarse"])
     # add delay to avoid conflicts from multiple threads creating the same directory
@@ -60,6 +61,7 @@ def train_one_node(rp: str, cat_type: str):
     Gets data in the form of sparse matrix from `qc.dataprep.feature_stack` module
     which is ready for use in a machine learning model. Using the data trains a svm node
     and serialize the trained object to the secondary memory.
+
     :argument:
         :param rp: Absolute path of the root directory of the project.
         :param cat_type: Type of categorical class `coarse` or any of the 6 main classes.
