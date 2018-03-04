@@ -5,7 +5,11 @@ Classifier for the question classification dataset - [ http://cogcomp.org/Data/Q
 1. Go to the project directory.
 2. We need to execute the command `./bin/qc.sh nlp` first.
 3. Once the Natural Language Processing (NLP) is done for computing annotated natural language property we can train one of the models.
-4. To train a model run command `./bin/qc.sh train {model_name}`
+4. To train a model run command `./bin/qc.sh train {ml_algo_model}`. e.g `./bin/qc.sh train svm`
+5. To test a model run command `./bin/qc.sh test {ml_algo_model}`.
+
+##### Machine learning algorithms implemented
+1. `svm` = Support Vector Machine
 
 #### Dependencies used
 

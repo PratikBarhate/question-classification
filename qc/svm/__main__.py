@@ -1,4 +1,5 @@
 from qc.svm import train
+from qc.svm import test
 import sys
 
 
@@ -10,6 +11,7 @@ else:
     if command == "train":
         train.execute(root_path)
     elif command == "test":
-        print("do something in test")
+        # TODO hard coded `svm` remove it
+        test.get_predictions(root_path, "svm")
     else:
         print("\n ** Error in initializing function from smv module. Invalid command")
