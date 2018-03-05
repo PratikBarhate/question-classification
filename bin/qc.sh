@@ -26,8 +26,8 @@ then
 else
   if [ ${1} == "nlp" ]
   then
-    # remove the previous `nohup.out` as to avoid confusion from previous executions
-    if [ -f "${APP_HOME}/nohup.out" ]
+    # remove the previous `stanfordNER.log` as to avoid confusion from previous executions
+    if [ -f "${APP_HOME}/stanfordNER.log" ]
     then
       rm ${APP_HOME}/nohup.out
     fi
@@ -36,7 +36,7 @@ else
     nohup java -Djava.ext.dirs=${APP_HOME}/resources/lib \
     -cp ${APP_HOME}/resources/lib/stanford-ner.jar edu.stanford.nlp.ie.NERServer \
     -port ${stanford_ner_port} \
-    -loadClassifier ${APP_HOME}/resources/external_classifiers/english.all.3class.distsim.crf.ser.gz &
+    -loadClassifier ${APP_HOME}/resources/external_classifiers/english.all.3class.distsim.crf.ser.gz > stanfordNER.log &
     # capture the ner process id
     ner_pid=$!
     # start the python process
@@ -47,29 +47,19 @@ else
   then
     if [ ${num_of_arg} -eq 2 ]
     then
-      if [ ${2} == "svm" ]
-      then
-        # start the python process
-        python -m qc.svm "train" "${APP_HOME}"
-      else
-        echo "${2} is an unexpected model. Not implemented"
-      fi
+      # start the python process
+      python -m qc.ml "train" "${2}" "${APP_HOME}"
     else
-      echo "Command 'train' expects one argument. Model: The class of model. e.g 'train svm' or 'train lr'"
+      echo "Command 'train' expects one argument. Model: The class of model. e.g 'train ml' or 'train lr'"
     fi
   elif [ ${1} == "test" ]
   then
     if [ ${num_of_arg} -eq 2 ]
     then
-      if [ ${2} == "svm" ]
-      then
-        # start the python process
-        python -m qc.svm "test" "${APP_HOME}"
-      else
-        echo "${2} is an unexpected model. Not implemented"
-      fi
+      # start the python process
+      python -m qc.ml "test" "${2}" "${APP_HOME}"
     else
-      echo "Command 'test' expects one argument. Model: The class of model. e.g 'test svm' or 'test lr'"
+      echo "Command 'test' expects one argument. Model: The class of model. e.g 'test ml' or 'test lr'"
     fi
   else
     echo "Invalid first argument. ${1} as first argument is unexpected."

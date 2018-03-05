@@ -1,4 +1,5 @@
-from qc.utils.file_ops import read_obj
+from qc.pre_processing.raw_processing import remove_endline_char
+from qc.utils.file_ops import read_obj, read_file
 from qc.dataprep.feature_stack import get_ft_obj
 import datetime
 
@@ -74,3 +75,54 @@ def get_predictions(rp: str, ml_algo: str):
     print("- Predicting done : {3} models in {0}h {1}m {2}s"
           .format(total_test.hour, total_test.minute, total_test.second, ml_algo))
     return pred
+
+
+def get_actual(rp: str):
+    """
+    Reads the test labels and returns the same in python list.
+
+    :argument
+        :param rp: Absolute path of the root directory of the project.
+    :return:
+        actual: List of actual labels for each of the test questions (test data).
+    """
+    actual = []
+    crf, coarse = read_file("coarse_classes_test", rp)
+    frf, fine = read_file("fine_classes_test", rp)
+    if not crf:
+        print("Error in reading actual (test) coarse classes")
+        exit(-11)
+    if not frf:
+        print("Error in reading actual (test) fine classes")
+        exit(-11)
+    c_lb = [remove_endline_char(c).strip() for c in coarse]
+    f_lb = [remove_endline_char(f).strip() for f in fine]
+    for i in range(0, len(c_lb)):
+        row_lb = [c_lb[i], f_lb[i]]
+        actual.append(row_lb)
+    return actual
+
+
+def execute(project_root_path: str, ml_algo: str):
+    """
+    Calculates the empirical error rate and prints it on the console.
+
+    :argument
+        :param project_root_path: Absolute Path of the project
+        :param ml_algo: The type of machine learning models to be used. (svm | lr)
+    :return:
+        None
+    """
+    pred = get_predictions(project_root_path, ml_algo)
+    actual = get_actual(project_root_path)
+    tl = len(pred)
+    correct = 0
+    wrong = 0
+    for i in range(0, tl):
+        if pred[i][0] == actual[i][0]: #and pred[i][1] == actual[i][1]:
+            correct = correct + 1
+        else:
+            wrong = wrong + 1
+    # error_perc = (wrong/l) * 100
+    accuray = (correct/tl) * 100
+    print("- Result: Accuracy of {0} model is {1}".format(ml_algo, accuray))
