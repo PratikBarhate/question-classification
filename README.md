@@ -8,8 +8,10 @@ Classifier for the question classification dataset - [ http://cogcomp.org/Data/Q
 4. To train a model run command `./bin/qc.sh train {ml_algo_model}`. e.g `./bin/qc.sh train svm`
 5. To test a model run command `./bin/qc.sh test {ml_algo_model}`.
 
-##### Machine learning algorithms implemented
+##### Machine learning algorithms implemented - {ml_algo_model}
 1. `svm` = Support Vector Machine
+2. `lr` = Logistic Regression
+3. `linear_svm` = Linear Support Vector Classifier (Machine)
 
 #### Dependencies used
 

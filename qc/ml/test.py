@@ -12,7 +12,7 @@ def get_predictions(rp: str, ml_algo: str):
 
     :argument
         :param rp: Absolute path of the root directory of the project.
-        :param ml_algo: The type of machine learning models to be used. (svm | lr)
+        :param ml_algo: The type of machine learning models to be used. (svm | lr | linear_svm)
     :return:
         pred: List of prediction for each of the test questions (test data).
     """
@@ -109,7 +109,7 @@ def execute(project_root_path: str, ml_algo: str):
 
     :argument
         :param project_root_path: Absolute Path of the project
-        :param ml_algo: The type of machine learning models to be used. (svm | lr)
+        :param ml_algo: The type of machine learning models to be used. (svm | lr | linear_svm)
     :return:
         None
     """
@@ -119,7 +119,7 @@ def execute(project_root_path: str, ml_algo: str):
     correct = 0
     wrong = 0
     for i in range(0, tl):
-        if pred[i][0] == actual[i][0]: #and pred[i][1] == actual[i][1]:
+        if pred[i][0] == actual[i][0] and pred[i][1] == actual[i][1]:
             correct = correct + 1
         else:
             wrong = wrong + 1

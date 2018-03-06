@@ -2,6 +2,7 @@ from qc.utils.file_ops import read_file, write_obj
 from qc.dataprep.feature_stack import get_ft_obj
 from qc.pre_processing.raw_processing import remove_endline_char
 from multiprocessing.pool import ThreadPool
+from sklearn import linear_model
 from sklearn import svm
 import datetime
 import time
@@ -17,7 +18,7 @@ def train_one_node(rp: str, cat_type: str, ml_algo: str):
         :param rp: Absolute path of the root directory of the project.
         :param cat_type: Type of categorical class `coarse` or any of the 6 main classes.
                                         (`abbr` | `desc` | `enty` | `hum` | `loc` | `num`)
-        :param ml_algo: The type of machine learning models to be used. (svm | lr)
+        :param ml_algo: The type of machine learning models to be used. (svm | lr | linear_svm)
     :return:
         boolean_flag: True for successful operation.
         model: trained SVC model
@@ -27,9 +28,11 @@ def train_one_node(rp: str, cat_type: str, ml_algo: str):
     y_lb = [remove_endline_char(c).strip() for c in labels]
     machine = None
     if ml_algo == "svm":
-        machine = svm.SVC(kernel="rbf", C=1.0, gamma=0.0005)
+        machine = svm.SVC(kernel="rbf", gamma=0.0005)
+    elif ml_algo == "linear_svm":
+        machine = svm.LinearSVC(loss="squared_hinge", dual=False)
     elif ml_algo == "lr":
-        machine = None
+        machine = linear_model.LogisticRegression()
     else:
         print("- Error while training {0} model. {0} is unexpected ML algorithm".format(ml_algo))
     model = machine.fit(x_ft, y_lb)
@@ -48,7 +51,7 @@ def execute(project_root_path: str, ml_algo: str):
 
     :argument
         :param project_root_path: Absolute Path of the project
-        :param ml_algo: The type of machine learning models to be used. (svm | lr)
+        :param ml_algo: The type of machine learning models to be used. (svm | lr | linear_svm)
     :return:
         None
     """

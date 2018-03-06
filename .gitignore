@@ -77,12 +77,17 @@ svm/
 lr/
 nn/
 xgboost/
+linear_svm/
 **/computed-data/
 
 !qc/svm/
 !qc/lr/
 !qc/nn/
 !qc/xgboost/
+!qc/svm/
+!qc/lr/
+!qc/nn/
+!qc/linear_svm/
 
 
 # include the packages only from following directories
