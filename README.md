@@ -24,6 +24,6 @@ Classifier for the question classification dataset - [ http://cogcomp.org/Data/Q
 
 ###### *NOTE:*
 ###### *1. Tab = 4 spaces*
-###### *2. command `python` should point to the installation following the below mentioned dependencies*
+###### *2. command `python` should point to the installation following the above mentioned dependencies*
 ###### *3. Or you can change the command in the shell script `qc.sh` to the suitable python command.*
 ###### *python -m {operation} -> python3 -m {operation}*

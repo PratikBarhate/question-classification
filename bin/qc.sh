@@ -31,7 +31,7 @@ else
     then
       rm ${APP_HOME}/nohup.out
     fi
-    # end of if to check and delete `nohup.out` file
+    # end of if to check and delete `stanfordNER.log` file
     # command to start StanfordNER java process
     nohup java -Djava.ext.dirs=${APP_HOME}/resources/lib \
     -cp ${APP_HOME}/resources/lib/stanford-ner.jar edu.stanford.nlp.ie.NERServer \
