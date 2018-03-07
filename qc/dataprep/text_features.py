@@ -67,7 +67,12 @@ def get_vect(data_type: str, rp: str, prop_type: str,  ml_algo: str, cat_type: s
         count_vec: CountVectorizer object.
     """
     if data_type == "training":
-        count_vec = CountVectorizer(ngram_range=(3, 5)).fit(text_data)
+        # ---------------------------------------Experimental code------------------------------------------------------
+
+        count_vec = CountVectorizer(ngram_range=(1, 2)).fit(text_data)
+
+        # Word vectorization initialization ends here.
+        # --------------------------------------------------------------------------------------------------------------
         wflag = write_obj(count_vec, "{0}_{1}_vec".format(cat_type, prop_type), rp + "/{0}".format(ml_algo))
         return wflag, count_vec
     elif data_type == "test":

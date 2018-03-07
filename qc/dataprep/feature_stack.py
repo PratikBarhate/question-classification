@@ -14,13 +14,28 @@ def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
         boolean_flag: True for successful operation.
         x_all_ft: numpy array of features to be feed to a Machine Learning algorithm.
     """
-    wflag, w_ft = text_ft_arr(data_type, rp, "word", ml_algo, cat_type)
+    # NOTE:
+    # 1. Part of Speech (pos) is same as `tag` hence no needed, and reduces accuracy.
+    #    More information can be found here - [https://spacy.io/api/token]
+    # 2. Directly the words as it is not a good feature,
+    #    instead lemma (root form) of the word is more useful as a feature.
+    # 3. Is alphabet or not feature is reducing the accuracy by a bit,
+    #    hence not used for now.
+
+    # -------------------------------------------Experimental code------------------------------------------------------
+    # Here you can select and tune feature stack.
+
     # pflag, p_ft = text_ft_arr(data_type, rp, "pos", ml_algo, cat_type)
+    # wflag, w_ft = text_ft_arr(data_type, rp, "word", ml_algo, cat_type)
+    # aflag, a_ft = text_ft_arr(data_type, rp, "alpha", ml_algo, cat_type)
+    lflag, l_ft = text_ft_arr(data_type, rp, "lemma", ml_algo, cat_type)
     tflag, t_ft = text_ft_arr(data_type, rp, "tag", ml_algo, cat_type)
     dflag, d_ft = text_ft_arr(data_type, rp, "dep", ml_algo, cat_type)
-    # sflag, s_ft = text_ft_arr(data_type, rp, "shape", ml_algo, cat_type)
-    # aflag, a_ft = text_ft_arr(data_type, rp, "alpha", ml_algo, cat_type)
+    sflag, s_ft = text_ft_arr(data_type, rp, "shape", ml_algo, cat_type)
     stflag, st_ft = text_ft_arr(data_type, rp, "stop", ml_algo, cat_type)
     nflag, n_ft = text_ft_arr(data_type, rp, "ner", ml_algo, cat_type)
-    x_all_ft = hstack([w_ft, t_ft, d_ft, n_ft, st_ft])
+    x_all_ft = hstack([t_ft, d_ft, n_ft, st_ft, l_ft, s_ft])
+
+    # Feature stack  ends here.
+    # ------------------------------------------------------------------------------------------------------------------
     return x_all_ft

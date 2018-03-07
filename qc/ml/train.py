@@ -27,14 +27,23 @@ def train_one_node(rp: str, cat_type: str, ml_algo: str):
     rf, labels = read_file("{0}_classes_training".format(cat_type), rp)
     y_lb = [remove_endline_char(c).strip() for c in labels]
     machine = None
+    # -----------------------------------Experimental code--------------------------------------------------------------
+    # 1. This is the part where you can experiment and play with the parameters.
+    # 2. If you want to add more models or combinations, you just need to add a `if` condition and
+    #    provide the condition value in argument from the shell. e.g `train svm`,
+    #    here `svm` will be in the variable {ml_algo}.
+
     if ml_algo == "svm":
-        machine = svm.SVC(kernel="rbf", gamma=0.0005)
+        machine = svm.SVC()
     elif ml_algo == "linear_svm":
-        machine = svm.LinearSVC(loss="squared_hinge", dual=False)
+        machine = svm.LinearSVC()
     elif ml_algo == "lr":
         machine = linear_model.LogisticRegression()
     else:
         print("- Error while training {0} model. {0} is unexpected ML algorithm".format(ml_algo))
+
+    # Parameter tuning ends here.
+    # ------------------------------------------------------------------------------------------------------------------
     model = machine.fit(x_ft, y_lb)
     mw_flag = write_obj(model, "{0}_model".format(cat_type), rp + "/{0}".format(ml_algo))
     if mw_flag:

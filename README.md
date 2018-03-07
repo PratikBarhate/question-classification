@@ -22,4 +22,8 @@ Classifier for the question classification dataset - [ http://cogcomp.org/Data/Q
 5. scipy - v1.0.0
 6. scikit-learn - v0.19.1
 
-###### *NOTE : Tab = 4 spaces*
+###### *NOTE:*
+###### *1. Tab = 4 spaces*
+###### *2. command `python` should point to the installation following the below mentioned dependencies*
+###### *3. Or you can change the command in the shell script `qc.sh` to the suitable python command.*
+###### *python -m {operation} -> python3 -m {operation}*
