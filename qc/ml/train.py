@@ -34,11 +34,11 @@ def train_one_node(rp: str, cat_type: str, ml_algo: str):
     #    here `svm` will be in the variable {ml_algo}.
 
     if ml_algo == "svm":
-        machine = svm.SVC()
+        machine = svm.SVC(C=0.025)
     elif ml_algo == "linear_svm":
         machine = svm.LinearSVC()
     elif ml_algo == "lr":
-        machine = linear_model.LogisticRegression()
+        machine = linear_model.LogisticRegression(solver="newton-cg")
     else:
         print("- Error while training {0} model. {0} is unexpected ML algorithm".format(ml_algo))
 
