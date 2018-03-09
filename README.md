@@ -19,6 +19,13 @@ Classifier for the question classification dataset - [ http://cogcomp.org/Data/Q
 2. The feature stack (what all data is to be feed to ML algorithm) can be modified/transformed/generated in file `qc.dataprep.feature_stack`
 3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. (Parameter tuning too can be done)
 
+#### Credits
+
+1. Akash Pateria - [https://github.com/Akash-Pateria]
+2. Pratik Barhate
+We worked together in the final year graduate project, named `Invoker`. This project has been inspired from one of 
+the problem we tried to solve, understanding the question for our QA bot (Invoker).
+
 #### Dependencies used
 
 1. python - v3.6.3
