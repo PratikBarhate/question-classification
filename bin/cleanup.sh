@@ -24,7 +24,7 @@ fi
 # Clean the directories as per the argument
 if [ ${1} == "all" ]
 then
-  rm -rf "${APP_HOME}/computed-data"
+  rm -rf "${APP_HOME}/common_data"
   rm -rf "${APP_HOME}/svm"
   rm -rf "${APP_HOME}/lr"
   rm -rf "${APP_HOME}/linear_svm"
@@ -35,7 +35,7 @@ then
   rm -rf "${APP_HOME}/linear_svm"
 elif [ ${1} == "nlp" ]
 then
-  rm -rf "${APP_HOME}/computed-data"
+  rm -rf "${APP_HOME}/common_data"
 elif [ ${1} == "svm" ]
 then
   rm -rf "${APP_HOME}/svm"

@@ -73,6 +73,7 @@ out/
 # project specific
 # intermediate files
 computed-data/
+common_data/
 svm/
 lr/
 nn/

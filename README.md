@@ -13,6 +13,12 @@ Classifier for the question classification dataset - [ http://cogcomp.org/Data/Q
 2. `lr` = Logistic Regression
 3. `linear_svm` = Linear Support Vector Classifier (Machine)
 
+#### Experimental Code
+
+1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`.
+2. The feature stack (what all data is to be feed to ML algorithm) can be modified/transformed/generated in file `qc.dataprep.feature_stack`
+3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. (Parameter tuning too can be done)
+
 #### Dependencies used
 
 1. python - v3.6.3
