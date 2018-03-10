@@ -46,10 +46,11 @@ Classifier for the question classification dataset - [ http://cogcomp.org/Data/Q
 
 #### Credits
 
-This project has been inspired from one of the problem we tried to solve, understanding the question for our QA bot. 
+This project has been inspired from one of the problem we tried to solve - understanding the question for our QA bot. 
 In the project I did work with Akash Pateria - [https://github.com/Akash-Pateria], we worked together in the final year 
-graduate project, named `Invoker`. This project aims at exploring more options to process Natural Language (English) 
-and improve the accuracy.
+graduate project, named `Invoker`. 
+
+This project aims at exploring more options to process Natural Language (English) and improve the accuracy.
 
 ###### *NOTE:*
 ###### *1. Tab = 4 spaces*

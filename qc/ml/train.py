@@ -34,7 +34,7 @@ def train_one_node(rp: str, cat_type: str, ml_algo: str):
     #    here `svm` will be in the variable {ml_algo}.
 
     if ml_algo == "svm":
-        machine = svm.SVC(C=0.025)
+        machine = svm.SVC()
     elif ml_algo == "linear_svm":
         machine = svm.LinearSVC()
     elif ml_algo == "lr":

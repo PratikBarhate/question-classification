@@ -29,7 +29,7 @@ else
     # remove the previous `stanfordNER.log` as to avoid confusion from previous executions
     if [ -f "${APP_HOME}/stanfordNER.log" ]
     then
-      rm ${APP_HOME}/nohup.out
+      rm ${APP_HOME}/stanfordNER.log
     fi
     # end of if to check and delete `stanfordNER.log` file
     # command to start StanfordNER java process
