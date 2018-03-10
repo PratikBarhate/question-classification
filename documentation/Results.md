@@ -5,7 +5,7 @@ algorithms' parameter tuning, i.e feature generation and vectorization results a
 sklearn. Features used all the time, 'including' the case while testing feature stack, are - NER, TAG, DEP, is-STOP.
 Accuracy mentioned is empirical percent accuracy_
 
-##### CountVectorizer of sklearn
+#### CountVectorizer of sklearn
 
 1. Various `ngram_range`, (min, max) value:
     1. (1, 2) - 59.0%
@@ -17,7 +17,7 @@ Accuracy mentioned is empirical percent accuracy_
 Hence, adding longer and more n_gram range is not a good way to generate text features for question dataset. 
 For the results below ngram_range=(1, 2) was used. 
 
-##### Feature Generation (Feature stack)
+#### Feature Generation (Feature stack)
 
 1. 'TAG' is just more fine grained form of POS in spaCy lib. With 'POS' instead of 'TAG' - 55.6%. And with 'TAG' - 59.0%
 2. 'Words' added as feature - 82.2% 
@@ -31,19 +31,19 @@ Hence, from point 1 it is clear that accuracy and depth of the NLP lib can disti
 we can conclude that shape or length of the word is more effective feature than the feature telling us, the word
 is an alphabet or not.
 
-##### Logistic Regression (lr)
+#### Logistic Regression (lr)
 
 1. All Default - 80.4%
 2. `solver="newton-cg"` - 80.6%, increasing the number of max_iter also gives the same results.
 
-##### Support Vector Machine (svm)
+#### Support Vector Machine (svm)
 
 1. All Default - 27.8%
 2. `gamma=1E-6` - 2.4%
 3. `C=0.025` - 2.4%
 4. `max_iter=750` - 14.2%
 
-##### Linear Support Vector Machine (linear_svm)
+#### Linear Support Vector Machine (linear_svm)
 
 _LinearSVC module is more efficient than smv with kernel="linear"_
 
