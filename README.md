@@ -1,6 +1,8 @@
 ## question-classification
 Classifier for the question classification dataset - [ http://cogcomp.org/Data/QA/QC/ ]
 
+_Results from the empirical tests carried out are in `{project_directory}/documentation/Results.md`
+
 #### Execution
 
 1. Go to the project directory.

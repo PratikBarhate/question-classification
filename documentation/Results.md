@@ -45,7 +45,7 @@ is an alphabet or not.
 
 #### Linear Support Vector Machine (linear_svm)
 
-_LinearSVC module is more efficient than smv with kernel="linear"_
+_LinearSVC module is more efficient than svm with kernel="linear"_
 
 1. All Default - 85.0%
 2. `loss="squared_hinge"` and `dual=False` - 85.0%, with `dual=True` also gives same accuracy.
