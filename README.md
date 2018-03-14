@@ -18,6 +18,13 @@ _Results from the empirical tests carried out are in `{project_directory}/docume
 2. `lr` = Logistic Regression
 3. `linear_svm` = Linear Support Vector Classifier (Machine)
 
+##### To clean the outputs
+
+1. `./bin/cleanup.sh nlp` - This will delete all the NLP related data.
+2. `./bin/cleanup.sh models` - This will delete all the pre-trained models.
+3. `./bin/cleanup.sh {ml_algo_model}` - This will delete the specific ML model which was pre-trained models
+4. `./bin/cleanup.sh all` - This will delete all the computed data.
+
 #### Experimental Code
 
 1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`.
