@@ -57,7 +57,7 @@ Classifier for the question classification dataset - [http://cogcomp.org/Data/QA
 #### Credits
 
 This project has been inspired from one of the problem we tried to solve - understanding the question for our QA bot. 
-In the project I did work with Akash Pateria - [https://github.com/Akash-Pateria], we worked together in the final year 
+I did work with Akash Pateria - [https://github.com/Akash-Pateria], we worked together in the final year 
 graduate project, named `Invoker`. We did use python - v2.7 and practNLPtools - [https://github.com/biplab-iitb/practNLPTools] 
 for our tasks in the project 'Invoker'.
 
