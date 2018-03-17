@@ -6,8 +6,8 @@ import spacy
 
 def com_annotations(data_type: str, rp: str):
     """
-    Function gets all the annotations, Lemma, POS, IS_STOPWORD etc., in the form of spaCy doc container for all the
-    rows (lines) in the text data and saves the object of list of the doc (container) for each line.
+    This method computes all the annotations, Lemma, POS, IS_STOPWORD etc., in the form of spaCy doc container
+    for all the rows (lines) in the text data and saves the object of list of the doc (container) for each line.
     # doc = spaCy container - [https://spacy.io/api/doc]
 
     :argument:
@@ -32,7 +32,8 @@ def com_annotations(data_type: str, rp: str):
 
 def com_ner(data_type: str, rp: str):
     """
-    Function gets the NER tags of the sentence using the sequential model pre-trained by Stanford NLP programs.
+    This method computes the NER tags of the sentence using the sequential model pre-trained by Stanford NLP programs.
+    Pre-trained model is in the directory - {project_root_directory}/resources/external_classifiers
 
      :argument:
         :param data_type: String either `training` or `test`

@@ -5,6 +5,10 @@ import numpy
 
 def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type: str):
     """
+    This method reads the list of `doc` objects or `NER` tags written to secondary memory by NLP process.
+    For the list of objects gets the Word Vectorizer to convert text data to numeric data and transforms
+    the list of text data to vectorized features.
+
     :argument:
         :param data_type: String either `training` or `test`.
         :param rp: Absolute path of the root directory of the project.
@@ -54,6 +58,8 @@ def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
 
 def get_vect(data_type: str, rp: str, prop_type: str,  ml_algo: str, cat_type: str, text_data):
     """
+    This method takes the list of text data and fits the Word Vectorizer (CountVectorizer) over the list of text data.
+
     :argument:
         :param data_type: String either `training` or `test`.
         :param rp: Absolute path of the root directory of the project.
@@ -85,9 +91,13 @@ def get_vect(data_type: str, rp: str, prop_type: str,  ml_algo: str, cat_type: s
 
 def get_info_doc(prop: str, doc_obj):
     """
+    'Doc' data type of spaCy lib keeps the computed information in the form of token for each of the word in a sentence.
+    But we need the information as a single string analogous to the original sentence. Hence, this method gets the
+    tokens and joins the information of each word into one string.
+
     :argument
         :param prop: Natural language property either `word` | `lemma` | `pos` | `tag` | `dep` |
-                     `shape` | `alpha` | `stop` (from spaCy)
+                     `shape` | `alpha` | `stop` (from spaCy lib)
         :param doc_obj: `Doc` container of spaCy library.
     :return:
         data: Natural language annotations/properties as computed by the library as space concatenated string.

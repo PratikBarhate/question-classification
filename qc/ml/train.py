@@ -56,7 +56,8 @@ def train_one_node(rp: str, cat_type: str, ml_algo: str):
 
 def execute(project_root_path: str, ml_algo: str):
     """
-    Starts 7 threads to train each of SVM models.
+    Starts 7 threads to train each of Machine Learning models.
+    coarse|abbr|desc|enty|hum|loc|num
 
     :argument
         :param project_root_path: Absolute Path of the project

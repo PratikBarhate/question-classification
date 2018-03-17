@@ -4,6 +4,8 @@ from scipy.sparse import hstack
 
 def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
     """
+    This method gets the vectorized features and stacks them horizontally.
+
     :argument:
         :param data_type: String either `training` or `test`.
         :param rp: Absolute path of the root directory of the project.

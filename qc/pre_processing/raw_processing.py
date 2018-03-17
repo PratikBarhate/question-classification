@@ -6,6 +6,9 @@ import re
 
 def pre_process(raw_sentence):
     """
+    This method removes the characters from sentence,
+    which are not expected in grammatically correct questions.
+
     :argument:
         :param raw_sentence: String
     :returns:
@@ -17,6 +20,8 @@ def pre_process(raw_sentence):
 
 def remove_extra_spaces(raw_sentence):
     """
+    This method removes more than one continuous spaces and reduces to only one space.
+
     :argument:
         :param raw_sentence: String
     :returns:
@@ -28,6 +33,9 @@ def remove_extra_spaces(raw_sentence):
 
 def remove_space_before_apost(raw_sentence):
     """
+    This method removes the space between a word and the apostrophe,
+    to make it more correct grammatically.
+
     :argument:
         :param raw_sentence: String
     :returns:
@@ -39,6 +47,8 @@ def remove_space_before_apost(raw_sentence):
 
 def remove_endline_char(raw_sentence):
     """
+    This method removes all the end-line characters from a string.
+
     :argument:
         :param raw_sentence: String
     :returns:
@@ -50,6 +60,9 @@ def remove_endline_char(raw_sentence):
 
 def read_raw_data(file_key, rp):
     """
+    This method reads the dataset present as it is originally and
+    forms the structure which will be easy to use for the further process.
+
     :argument:
         :param file_key: A string which represents the raw data file, in properties.conf,
                           used for the process (experiment).
@@ -88,6 +101,8 @@ def read_raw_data(file_key, rp):
 
 def clean_sentences(questions_list):
     """
+    This method uses all the regex methods to clean the sentences of unwanted characters.
+
     :argument:
         :param questions_list: List of string
     :return:
@@ -103,6 +118,8 @@ def clean_sentences(questions_list):
 
 def sep_fine_classes(coarse, fine):
     """
+    This method combines all the fine class of a particular coarse class together.
+
     :argument
         :param coarse: Coarse class of the given row
         :param fine: Fine class of the given row
@@ -143,6 +160,9 @@ def sep_fine_classes(coarse, fine):
 
 def dataset_raw_prep(data_type, rp: str):
     """
+    This method handles the raw processing of dataset
+    and process training or test data as per the arguments.
+
     :argument:
         :param data_type: String either `training` or `test`
         :param rp: Absolute path of the root directory of the project
@@ -185,6 +205,9 @@ def dataset_raw_prep(data_type, rp: str):
 
 def execute(project_root_path: str):
     """
+    This method starts 2 threads for processing the raw dataset.
+    training|test
+
     :argument
         :param project_root_path: Absolute Path of the project
     :return:

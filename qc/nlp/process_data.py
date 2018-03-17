@@ -9,6 +9,9 @@ import time
 
 def coarse_ann_computations(data_type: str, rp: str):
     """
+    This method handles the process to compute text annotations using spaCy lib,
+    and does for the test/train text data as per the arguments passed.
+
     :argument:
         :param data_type: String either `training` or `test`
         :param rp: Absolute path of the root directory of the project
@@ -32,6 +35,9 @@ def coarse_ann_computations(data_type: str, rp: str):
 
 def coarse_ner_computations(data_type: str, rp: str):
     """
+    This method handles the process to compute NER tags using StanfordNER,
+    and does for the test/train text data as per the arguments passed.
+
     :argument:
         :param data_type: String either `training` or `test`
         :param rp: Absolute path of the root directory of the project
@@ -55,6 +61,10 @@ def coarse_ner_computations(data_type: str, rp: str):
 
 def fine_prop_separation(data_type: str, rp: str, prop_type: str):
     """
+    This method handles the process to generate separate files (data) for fine class prediction model.
+    `abbr` | `desc` | `enty` | `hum` | `loc` | `num` questions having the following coarse class are
+    combined together and stored in the respective files.
+
     :argument:
         :param data_type: String either `training` or `test`
         :param rp: Absolute path of the root directory of the project
@@ -84,6 +94,11 @@ def fine_prop_separation(data_type: str, rp: str, prop_type: str):
 
 def execute(project_root_path: str):
     """
+    This method starts 4 threads to compute NLP related information, from raw text data.
+    spaCy|StanfordNER * training|test.
+
+    Then again uses the same thread pool of 4 to generate separate files for fine class prediction models.
+
     :argument
         :param project_root_path: Absolute Path of the project
     :return:

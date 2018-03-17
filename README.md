@@ -1,7 +1,8 @@
 ## question-classification
-Classifier for the question classification dataset - [ http://cogcomp.org/Data/QA/QC/ ]
+Classifier for the question classification dataset - [http://cogcomp.org/Data/QA/QC/]
 
-_Results from the empirical tests carried out are in `{project_directory}/documentation/Results.md`_
+1. _Results from the empirical tests carried out are in `{project_directory}/documentation/Results.md`_
+2. _More details about the execution/logic is available in `{project_directory}/documentation/Execution_Details.md`_
 
 #### Execution
 
@@ -22,7 +23,7 @@ _Results from the empirical tests carried out are in `{project_directory}/docume
 
 1. `./bin/cleanup.sh nlp` - This will delete all the NLP related data.
 2. `./bin/cleanup.sh models` - This will delete all the pre-trained models.
-3. `./bin/cleanup.sh {ml_algo_model}` - This will delete the specific ML model which was pre-trained models
+3. `./bin/cleanup.sh {ml_algo_model}` - This will delete the specific ML model which was pre-trained.
 4. `./bin/cleanup.sh all` - This will delete all the computed data.
 
 #### Experimental Code
@@ -57,7 +58,8 @@ _Results from the empirical tests carried out are in `{project_directory}/docume
 
 This project has been inspired from one of the problem we tried to solve - understanding the question for our QA bot. 
 In the project I did work with Akash Pateria - [https://github.com/Akash-Pateria], we worked together in the final year 
-graduate project, named `Invoker`. 
+graduate project, named `Invoker`. We did use python - v2.7 and practNLPtools - [https://github.com/biplab-iitb/practNLPTools] 
+for our tasks in the project 'Invoker'.
 
 This project aims at exploring more options to process Natural Language (English) and improve the accuracy.
 
@@ -65,4 +67,4 @@ This project aims at exploring more options to process Natural Language (English
 ###### *1. Tab = 4 spaces*
 ###### *2. command `python` should point to the installation following the above mentioned dependencies*
 ###### *3. Or you can change the command in the shell script `qc.sh` to the suitable python command.*
-###### *python -m {operation} -> python3 -m {operation}*
+###### *python -m {operation} ---> python3 -m {operation}*

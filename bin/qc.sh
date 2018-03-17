@@ -50,7 +50,7 @@ else
       # start the python process
       python -m qc.ml "train" "${2}" "${APP_HOME}"
     else
-      echo "Command 'train' expects one argument. Model: The class of model. e.g 'train ml' or 'train lr'"
+      echo "Command 'train' expects one argument. Model: The class of model. e.g 'train linear_svm' or 'train lr'"
     fi
   elif [ ${1} == "test" ]
   then
@@ -59,7 +59,7 @@ else
       # start the python process
       python -m qc.ml "test" "${2}" "${APP_HOME}"
     else
-      echo "Command 'test' expects one argument. Model: The class of model. e.g 'test ml' or 'test lr'"
+      echo "Command 'test' expects one argument. Model: The class of model. e.g 'test linear_svm' or 'test lr'"
     fi
   else
     echo "Invalid first argument. ${1} as first argument is unexpected."
