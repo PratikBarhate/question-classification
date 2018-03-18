@@ -29,7 +29,7 @@ def train_one_node(rp: str, cat_type: str, ml_algo: str):
     machine = None
     # -----------------------------------Experimental code--------------------------------------------------------------
     # 1. This is the part where you can experiment and play with the parameters.
-    # 2. If you want to add more models or combinations, you just need to add a `if` condition and
+    # 2. If you want to add more models or combinations, you just need to add a `elif` condition and
     #    provide the condition value in argument from the shell. e.g `train svm`,
     #    here `svm` will be in the variable {ml_algo}.
 

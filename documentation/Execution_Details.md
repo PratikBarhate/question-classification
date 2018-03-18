@@ -1,7 +1,7 @@
 #### Natural Language processing
 
 All the questions (rows) are processed together from both the training as well as test data, when you execute 
-`./bin/qc.sh nlp`. The processed information from spaCy lib is stored as list of `Doc` [https://spacy.io/api/doc] 
+`./bin/qc.sh nlp`. The processed information from spaCy lib is stored as list of [Doc](https://spacy.io/api/doc) 
 objects, where each element in the list represents the question (row) from the dataset of same index.
 Name Entity Recognition (NER) tag is generated using StanfordNER and stored as list of tags, again where each element in
 the list represents the same question (row) from the dataset.
@@ -21,7 +21,7 @@ vectorizer for each of the features used in 'feature_stack'.
 
 1. There are two set of labels in the data - coarse and fine. Structure of dataset is 
 `coarseClass:fineClass question sentence` e.g. `DESC:def What is an atom ?`. Hence, here coarseClass = DESC and 
-fineClass = def. Detailed taxonomy can be found at - [http://cogcomp.org/Data/QA/QC/definition.html]. 
+fineClass = def. Detailed taxonomy can be found at - [Taxonomy](http://cogcomp.org/Data/QA/QC/definition.html). 
 2. There are total 7 ML models trained when you execute `./bin/qc.sh train {ml_algo}` command. The API to be used / type
 of ML class to be loaded is decided from the {ml_algo} parameter and each of the 7 models are of the same class.
 3. One model can name as `coarse`, is for predicting the coarseClass. To train this model all pf the training data 

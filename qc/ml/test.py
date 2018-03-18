@@ -124,6 +124,6 @@ def execute(project_root_path: str, ml_algo: str):
         else:
             wrong = wrong + 1
     # error_perc = (wrong/l) * 100
-    accuracy = (correct/tl) * 100
+    accuracy = (correct / tl) * 100
     print("- Number of correct predictions are {0} out of {1} total".format(correct, tl))
     print("- Result: Accuracy of {0} model is {1}%".format(ml_algo, round(accuracy, 4)))

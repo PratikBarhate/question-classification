@@ -56,7 +56,7 @@ def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
         return False
 
 
-def get_vect(data_type: str, rp: str, prop_type: str,  ml_algo: str, cat_type: str, text_data):
+def get_vect(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type: str, text_data):
     """
     This method takes the list of text data and fits the Word Vectorizer (CountVectorizer) over the list of text data.
 
