@@ -24,7 +24,7 @@ vectorizer for each of the features used in 'feature_stack'.
 fineClass = def. Detailed taxonomy can be found at - [Taxonomy](http://cogcomp.org/Data/QA/QC/definition.html). 
 2. There are total 7 ML models trained when you execute `./bin/qc.sh train {ml_algo}` command. The API to be used / type
 of ML class to be loaded is decided from the {ml_algo} parameter and each of the 7 models are of the same class.
-3. One model can name as `coarse`, is for predicting the coarseClass. To train this model all pf the training data 
+3. One model, namely `coarse`, is for predicting the coarseClass. To train this model all pf the training data 
 (questions/rows) is used. With coarseClass as the target/dependent variable. fineClass is ignored.
 4. Other six are to predict the fine class of the respective coarseClass (`abbr` | `desc` | `enty` | `hum` | `loc` | `num`).
 The training data (questions/rows) which have the specific coarseClass is used for training the particular model.
