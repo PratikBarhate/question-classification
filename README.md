@@ -62,7 +62,7 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
            machine = svm.LinearSVC() 
    ```
    
-   While executing using the shell command `./bin/qc.sh train lr_lsvm`, and this command will use the model defined by you. 
+   While executing, use the shell command `./bin/qc.sh train lr_lsvm`, and this command will use the model defined by you. 
    `lr_lsvm` is `{your_model_name}`. In the example we have defined to use LogisticRegression
    for coarse class prediction and LinearSVC for fine class predictions (all of the fine class predictions). 
 
