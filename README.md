@@ -21,8 +21,8 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 2. We need to execute the command `./bin/qc.sh nlp` first.
 3. Once the Natural Language Processing (NLP) is done for computing annotated natural language property we can train 
    one of the models.
-4. To train a model run command `./bin/qc.sh train {ml_algo_model}`. e.g `./bin/qc.sh train svm`
-5. To test a model run command `./bin/qc.sh test {ml_algo_model}`.
+4. To train a model execute command `./bin/qc.sh train {ml_algo_model}`. e.g `./bin/qc.sh train svm`
+5. To test a model run execute `./bin/qc.sh test {ml_algo_model}`.
 
 ##### Machine learning algorithms implemented - {ml_algo_model}
 
