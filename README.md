@@ -19,7 +19,7 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 1. Go to the project directory.
 2. We need to execute the command `./bin/qc.sh nlp` first.
-3. Once the Natural Language Processing (NLP) is done for computing annotated natural language property we can train 
+3. Once the Natural Language Processing (NLP) is done for computing annotated natural language property we can train
    one of the models.
 4. To train a model execute command `./bin/qc.sh train {ml_algo_model}`. e.g `./bin/qc.sh train svm`
 5. To test a model execute command `./bin/qc.sh test {ml_algo_model}`.
@@ -40,31 +40,31 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 #### Experimental Code
 
 1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`.
-2. The feature stack (what all data is to be feed to ML algorithm) can be modified/transformed/generated 
+2. The feature stack (what all data is to be feed to ML algorithm) can be modified/transformed/generated
    in file `qc.dataprep.feature_stack`
-   
-   _These (point 1, 2) changes are used whenever you execute training process again. 
+
+   _These (point 1, 2) changes are used whenever you execute training process again.
    There is no need to execute `nlp` step again._
-   
+
 3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. (Parameter tuning too can be done)
    e.g In the experimental part of the code add extra `elif` statement
-   
+
    ```
    elif == {your_model_name}:
        machine = {Initialize the algorithm you want to use}
    ```
-   
+
    ```
    elif ml_algo == "lr_lsvm":
        if cat_type == "coarse":
            machine = linear_model.LogisticRegression(solver="newton-cg")
        else:
-           machine = svm.LinearSVC() 
+           machine = svm.LinearSVC()
    ```
-   
-   While executing, use the shell command `./bin/qc.sh train lr_lsvm`, and this command will use the model defined by you. 
+
+   While executing, use the shell command `./bin/qc.sh train lr_lsvm`, and this command will use the model defined by you.
    `lr_lsvm` is `{your_model_name}`. In the example we have defined to use LogisticRegression
-   for coarse class prediction and LinearSVC for fine class predictions (all of the fine class predictions). 
+   for coarse class prediction and LinearSVC for fine class predictions (all of the fine class predictions).
 
 ###### *NOTE:*
 ###### *1. Tab = 4 spaces*
@@ -74,14 +74,14 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 #### License
 
-[MIT License](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
+[MIT](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
 
 #### Credits
 
-This project has been inspired from one of the problem we tried to solve - understanding the question for our QA bot. 
-In a project named `Invoker`, I did work with [Akash Pateria](https://github.com/Akash-Pateria), we worked together 
-in the final year graduate project. We did use python - v2.7 and [practNLPtools](https://github.com/biplab-iitb/practNLPTools) 
+This project has been inspired from one of the problem we tried to solve - understanding the question for our QA bot.
+In a project named `Invoker`, I did work with [Akash Pateria](https://github.com/Akash-Pateria), we worked together
+in the final year graduate project. We did use python - v2.7 and [practNLPtools](https://github.com/biplab-iitb/practNLPTools)
 for our tasks in the project 'Invoker'.
 
-This project aims at exploring more options to process Natural Language (English), test with various combinations of 
+This project aims at exploring more options to process Natural Language (English), test with various combinations of
 features and improve the accuracy.
