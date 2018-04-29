@@ -1,8 +1,8 @@
 ## question-classification
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/).
 
-1. _Results from the empirical tests carried out are in `{project_directory}/documentation/Results.md`_
-2. _More details about the execution/logic is available in `{project_directory}/documentation/Execution_Details.md`_
+1. _Results from the empirical tests carried out are in `{project_directory}/documentation/[Results.md](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)`_
+2. _More details about the execution/logic is available in `{project_directory}/documentation/[Execution_Details.md](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md)`_
 
 #### Dependencies used
 
