@@ -1,7 +1,7 @@
 ## question-classification
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/).
 
-1. _Results from the empirical tests carried out are in_ [Results.md](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)
+1. _Results from the empirical tests carried out, are in_ [Results.md](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)
 2. _More details about the execution/logic is available in_ [Execution_Details.md](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md)
 
 #### Dependencies used
@@ -39,15 +39,15 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 #### Experimental Code
 
-1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`.
+1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/dataprep/text_features.py)
 2. The feature stack (what all data is to be feed to ML algorithm) can be modified/transformed/generated
-   in file `qc.dataprep.feature_stack`
+   in file `qc.dataprep.feature_stack`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/dataprep/feature_stack.py)
 
    _These (point 1, 2) changes are used whenever you execute training process again.
    There is no need to execute `nlp` step again._
 
-3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. (Parameter tuning too can be done)
-   e.g In the experimental part of the code add extra `elif` statement
+3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/ml/train.py)
+(Parameter tuning too can be done). *e.g* In the experimental part of the code add extra `elif` statement
 
    ```
    elif == {your_model_name}:

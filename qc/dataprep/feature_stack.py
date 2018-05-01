@@ -19,7 +19,7 @@ def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
     # NOTE:
     # 1. Part of Speech (pos) is same as `tag` hence no needed, and reduces accuracy.
     #    More information can be found here - [https://spacy.io/api/token]
-    # 2. Directly the words as it is not a good feature,
+    # 2. Direct list words, is not a good feature,
     #    instead lemma (root form) of the word is more useful as a feature.
     # 3. Is alphabet or not feature is reducing the accuracy by a bit,
     #    hence not used for now.
