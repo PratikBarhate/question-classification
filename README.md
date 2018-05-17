@@ -1,6 +1,6 @@
 ## question-classification
 
-[![HitCount](http://hits.dwyl.io/Pratik-Barhate/question-classification.svg)](http://hits.dwyl.io/Pratik-Barhate/question-classification)
+[![GitHub forks](https://img.shields.io/github/forks/Naereen/StrapDown.js.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/Naereen/StrapDown.js/network/)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)    [![Package Control total downloads](https://img.shields.io/packagecontrol/dt/SwitchDictionary.svg)](https://packagecontrol.io/packages/SwitchDictionary)
 
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/).
 
