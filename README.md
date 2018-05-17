@@ -1,4 +1,7 @@
 ## question-classification
+
+[![HitCount](http://hits.dwyl.io/Pratik-Barhate/question-classification.svg)](http://hits.dwyl.io/Pratik-Barhate/question-classification)
+
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/).
 
 1. _Results from the empirical tests carried out, are in_ [Results.md](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)
