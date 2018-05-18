@@ -1,6 +1,6 @@
 ## question-classification
 
-[![GitHub forks](https://img.shields.io/github/forks/Naereen/StrapDown.js.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/Pratik-Barhate/question-classification/network)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)    [![Package Control total downloads](https://img.shields.io/packagecontrol/dt/SwitchDictionary.svg)](https://packagecontrol.io/packages/SwitchDictionary)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
 
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/).
 
