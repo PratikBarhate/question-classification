@@ -5,13 +5,14 @@ pushd . > /dev/null
 SCRIPT_DIRECTORY="${BASH_SOURCE[0]}"
 while([ -h "${SCRIPT_DIRECTORY}" ])
 do
-  cd "`dirname "${SCRIPT_DIRECTORY}"`"
-  SCRIPT_DIRECTORY="$(readlink "`basename "${SCRIPT_DIRECTORY}"`")"
+  cd "$(dirname "${SCRIPT_DIRECTORY}")"
+  SCRIPT_DIRECTORY="$(readlink "$(basename "${SCRIPT_DIRECTORY}")")"
 done
-cd "`dirname "${SCRIPT_DIRECTORY}"`" > /dev/null
-SCRIPT_DIRECTORY="`pwd`"
+cd "$(dirname "${SCRIPT_DIRECTORY}")" > /dev/null
+SCRIPT_DIRECTORY="$(pwd)"
 popd  > /dev/null
-APP_HOME="`dirname "${SCRIPT_DIRECTORY}"`"
+APP_HOME="$(dirname "${SCRIPT_DIRECTORY}")"
+
 
 # check for the number arguments provided are as expected or not
 num_of_arg=$#
@@ -20,6 +21,7 @@ then
   echo "One argument expected. Given ${num_of_arg}"
   exit 1
 fi
+
 
 # Clean the directories as per the argument
 if [ ${1} == "all" ]

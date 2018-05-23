@@ -97,7 +97,8 @@ def get_actual(rp: str):
         exit(-11)
     c_lb = [remove_endline_char(c).strip() for c in coarse]
     f_lb = [remove_endline_char(f).strip() for f in fine]
-    for i in range(0, len(c_lb)):
+    ll = len(c_lb)
+    for i in range(0, ll):
         row_lb = [c_lb[i], f_lb[i]]
         actual.append(row_lb)
     return actual

@@ -24,7 +24,7 @@ def train_one_node(rp: str, cat_type: str, ml_algo: str):
         model: trained SVC model
     """
     x_ft = get_ft_obj("training", rp, ml_algo, cat_type)
-    rf, labels = read_file("{0}_classes_training".format(cat_type), rp)
+    labels = read_file("{0}_classes_training".format(cat_type), rp)[1]
     y_lb = [remove_endline_char(c).strip() for c in labels]
     machine = None
     # -----------------------------------Experimental code--------------------------------------------------------------

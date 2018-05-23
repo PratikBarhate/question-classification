@@ -1,6 +1,6 @@
 ## question-classification
 
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)    [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4a93dde781c5421d9078f49687df8bf1)](https://www.codacy.com/app/Pratik-Barhate/question-classification?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Pratik-Barhate/question-classification&amp;utm_campaign=Badge_Grade)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
 
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/).
 

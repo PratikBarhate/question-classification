@@ -27,15 +27,15 @@ def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
     # -------------------------------------------Experimental code------------------------------------------------------
     # Here you can select and tune feature stack.
 
-    # pflag, p_ft = text_ft_arr(data_type, rp, "pos", ml_algo, cat_type)
-    # wflag, w_ft = text_ft_arr(data_type, rp, "word", ml_algo, cat_type)
-    # aflag, a_ft = text_ft_arr(data_type, rp, "alpha", ml_algo, cat_type)
-    lflag, l_ft = text_ft_arr(data_type, rp, "lemma", ml_algo, cat_type)
-    tflag, t_ft = text_ft_arr(data_type, rp, "tag", ml_algo, cat_type)
-    dflag, d_ft = text_ft_arr(data_type, rp, "dep", ml_algo, cat_type)
-    sflag, s_ft = text_ft_arr(data_type, rp, "shape", ml_algo, cat_type)
-    stflag, st_ft = text_ft_arr(data_type, rp, "stop", ml_algo, cat_type)
-    nflag, n_ft = text_ft_arr(data_type, rp, "ner", ml_algo, cat_type)
+    # p_ft = text_ft_arr(data_type, rp, "pos", ml_algo, cat_type)[1]
+    # w_ft = text_ft_arr(data_type, rp, "word", ml_algo, cat_type)[1]
+    # a_ft = text_ft_arr(data_type, rp, "alpha", ml_algo, cat_type)[1]
+    l_ft = text_ft_arr(data_type, rp, "lemma", ml_algo, cat_type)[1]
+    t_ft = text_ft_arr(data_type, rp, "tag", ml_algo, cat_type)[1]
+    d_ft = text_ft_arr(data_type, rp, "dep", ml_algo, cat_type)[1]
+    s_ft = text_ft_arr(data_type, rp, "shape", ml_algo, cat_type)[1]
+    st_ft = text_ft_arr(data_type, rp, "stop", ml_algo, cat_type)[1]
+    n_ft = text_ft_arr(data_type, rp, "ner", ml_algo, cat_type)[1]
     x_all_ft = hstack([t_ft, d_ft, n_ft, st_ft, l_ft, s_ft])
 
     # Feature stack  ends here.
