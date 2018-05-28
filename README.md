@@ -15,6 +15,7 @@ Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/
 4. sner - v0.2.3
 5. scipy - v1.0.0
 6. scikit-learn - v0.19.1
+7. java 8 - v1.8
 
 #### Execution
 
