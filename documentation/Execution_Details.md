@@ -1,3 +1,5 @@
+Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
+
 #### Natural Language processing
 
 All the questions (rows) are processed together from both the training as well as test data, when you execute 
