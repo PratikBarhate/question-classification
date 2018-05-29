@@ -30,7 +30,6 @@ then
   rm -rf "${APP_HOME}/svm"
   rm -rf "${APP_HOME}/lr"
   rm -rf "${APP_HOME}/linear_svm"
-  rm "${APP_HOME}/stanfordNER.log"
 elif [ ${1} == "models" ]
 then
   rm -rf "${APP_HOME}/svm"
@@ -39,7 +38,6 @@ then
 elif [ ${1} == "nlp" ]
 then
   rm -rf "${APP_HOME}/common_data"
-  rm "${APP_HOME}/stanfordNER.log"
 elif [ ${1} == "svm" ]
 then
   rm -rf "${APP_HOME}/svm"

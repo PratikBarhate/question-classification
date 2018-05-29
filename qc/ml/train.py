@@ -77,28 +77,28 @@ def execute(project_root_path: str, ml_algo: str):
     hum_result = pool.apply_async(train_one_node, args=[project_root_path, "hum", ml_algo])
     loc_result = pool.apply_async(train_one_node, args=[project_root_path, "loc", ml_algo])
     num_result = pool.apply_async(train_one_node, args=[project_root_path, "num", ml_algo])
-    abbr_val = abbr_result.get()
-    desc_val = desc_result.get()
-    enty_val = enty_result.get()
-    hum_val = hum_result.get()
-    loc_val = loc_result.get()
-    num_val = num_result.get()
-    coarse_val = coarse_result.get()
-    if not coarse_val:
+    abbr_status = abbr_result.get()
+    desc_status = desc_result.get()
+    enty_status = enty_result.get()
+    hum_status = hum_result.get()
+    loc_status = loc_result.get()
+    num_status = num_result.get()
+    coarse_status = coarse_result.get()
+    if not coarse_status:
         print("- Error while training coarse classifier model")
-    if not abbr_val:
+    if not abbr_status:
         print("- Error while training abbr classifier model")
-    if not desc_val:
+    if not desc_status:
         print("- Error while training desc classifier model")
-    if not enty_val:
+    if not enty_status:
         print("- Error while training enty classifier model")
-    if not hum_val:
+    if not hum_status:
         print("- Error while training hum classifier model")
-    if not loc_val:
+    if not loc_status:
         print("- Error while training loc classifier model")
-    if not num_val:
+    if not num_status:
         print("- Error while training num classifier model")
-    if coarse_val and abbr_val and desc_val and enty_val and hum_val and loc_val and num_val:
+    if coarse_status and abbr_status and desc_status and enty_status and hum_status and loc_status and num_status:
         end_svm = datetime.datetime.now().timestamp()
         total_svm = datetime.datetime.utcfromtimestamp(end_svm - start_svm)
         print("- Training done : {3} models in {0}h {1}m {2}s"

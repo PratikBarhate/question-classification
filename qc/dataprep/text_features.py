@@ -5,7 +5,7 @@ import numpy
 
 def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type: str):
     """
-    This method reads the list of `doc` objects or `NER` tags written to secondary memory by NLP process.
+    This method reads the list of `doc` objects written to secondary memory by NLP process.
     For the list of objects gets the Word Vectorizer to convert text data to numeric data and transforms
     the list of text data to vectorized features.
 
@@ -13,7 +13,7 @@ def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
         :param data_type: String either `training` or `test`.
         :param rp: Absolute path of the root directory of the project.
         :param prop_type: Natural language property either `word` | `lemma` | `pos` | `tag` | `dep` |
-                          `shape` | `alpha` | `stop` (from spaCy) or `ner` (from StanfordNER).
+                          `shape` | `alpha` | `stop` | `ner` | (from spaCy)
         :param ml_algo: Machine algorithm for which the dataprep is running.
         :param cat_type: Type of categorical class `coarse` or any of the 6 main classes.
                          (`abbr` | `desc` | `enty` | `hum` | `loc` | `num`)
@@ -21,7 +21,7 @@ def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
         boolean_flag: True for successful operation.
         text_ft: feature vectorized to be used in ML algorithms.
     """
-    list_doc_prop = ["word", "lemma", "pos", "tag", "dep", "shape", "alpha", "stop"]
+    list_doc_prop = ["word", "lemma", "pos", "tag", "dep", "shape", "alpha", "stop", "ner"]
     if prop_type in list_doc_prop:
         if data_type == "training":
             flag, doc_list_obj = read_obj("{1}_{0}_doc".format(data_type, cat_type), rp)
@@ -32,20 +32,6 @@ def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type:
             vflag, vectorizer = get_vect(data_type, rp, prop_type, ml_algo, cat_type, text_data)
             if vflag:
                 text_ft = vectorizer.transform(text_data)
-                return True, text_ft
-            else:
-                return False
-        else:
-            return False
-    elif prop_type == "ner":
-        if data_type == "training":
-            flag, ner_l = read_obj("{1}_{0}_ner".format(data_type, cat_type), rp)
-        else:
-            flag, ner_l = read_obj("coarse_{0}_ner".format(data_type), rp)
-        if flag:
-            vflag, vectorizer = get_vect(data_type, rp, prop_type, ml_algo, cat_type, ner_l)
-            if vflag:
-                text_ft = vectorizer.transform(ner_l)
                 return True, text_ft
             else:
                 return False
@@ -96,7 +82,7 @@ def get_info_doc(prop: str, doc_obj):
 
     :argument
         :param prop: Natural language property either `word` | `lemma` | `pos` | `tag` | `dep` |
-                     `shape` | `alpha` | `stop` (from spaCy lib)
+                     `shape` | `alpha` | `stop` | `ner` | (from spaCy lib)
         :param doc_obj: `Doc` container of spaCy library.
     :return:
         data: Natural language annotations/properties as computed by the library as space concatenated string.
@@ -126,4 +112,13 @@ def get_info_doc(prop: str, doc_obj):
     elif prop == "stop":
         for doc in doc_obj:
             data.append(" ".join(numpy.array([t.is_stop for t in doc], dtype=str).tolist()))
+    elif prop == "ner":
+        for doc in doc_obj:
+            ner_list = []
+            for t in doc:
+                if t.ent_type_ == "":
+                    ner_list.append("0")
+                else:
+                    ner_list.append(t.ent_type_)
+            data.append(" ".join(ner_list))
     return data

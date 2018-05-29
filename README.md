@@ -4,18 +4,16 @@
 
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/).
 
-1. _Results from the empirical tests carried out, are in_ [Results.md](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)
-2. _More details about the execution/logic is available in_ [Execution_Details.md](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md)
+1. _Results from the empirical tests carried out, are in_ [Results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)
+2. _More details about the execution/logic is available in_ [Execution Details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md)
 
 #### Dependencies used
 
 1. python - v3.6.3
 2. configobj - v5.0.6
-3. spaCy - v2.0.9 (with "en_core_web_lg" english model)
-4. sner - v0.2.3
-5. scipy - v1.0.0
-6. scikit-learn - v0.19.1
-7. java 8 - v1.8
+3. spaCy - v2.0.11 (with "en_core_web_lg" english model)
+4. scipy - v1.0.0
+5. scikit-learn - v0.19.1
 
 #### Execution
 
@@ -27,6 +25,8 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
    one of the models.
 4. To train a model execute command `./bin/qc.sh train {ml_algo_model}`. e.g `./bin/qc.sh train svm`
 5. To test a model execute command `./bin/qc.sh test {ml_algo_model}`.
+
+* All the trained models are saved inside a folder named - `${ml_algo_model}`, inside the project's root directory.
 
 ##### Machine learning algorithms implemented - {ml_algo_model}
 
@@ -84,8 +84,12 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 This project has been inspired from one of the problem we tried to solve - understanding the question for our QA bot.
 In a project named `Invoker`, I did work with [Akash Pateria](https://github.com/Akash-Pateria), we worked together
-in the final year graduate project. We did use python - v2.7 and [practNLPtools](https://github.com/biplab-iitb/practNLPTools)
-for our tasks in the project 'Invoker'.
+in the final year graduate project. We did use python - v2.7, [practNLPtools](https://github.com/biplab-iitb/practNLPTools), 
+and LinearSVC, as the ML algorithm, for our tasks in the project 'Invoker'.
 
 This project aims at exploring more options to process Natural Language (English), test with various combinations of
 features and improve the accuracy.
+
+#### Future scope
+
+Try to implement shallow neural network using [PyTorch](https://pytorch.org/).

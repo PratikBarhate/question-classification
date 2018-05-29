@@ -219,11 +219,11 @@ def execute(project_root_path: str):
     # start the threads and wait for them to finish
     train_result = pool.apply_async(dataset_raw_prep, args=["training", project_root_path])
     test_result = pool.apply_async(dataset_raw_prep, args=["test", project_root_path])
-    train_val = train_result.get()
-    test_val = test_result.get()
-    if not train_val:
+    train_status = train_result.get()
+    test_status = test_result.get()
+    if not train_status:
         print("- Error: In text splitting for training data")
-    if not test_val:
+    if not test_status:
         print("- Error: In text splitting for test data")
-    if train_val and test_val:
+    if train_status and test_status:
         print("- Raw text splitting done for training and test data")

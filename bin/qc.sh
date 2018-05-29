@@ -15,7 +15,6 @@ APP_HOME="$(dirname "${SCRIPT_DIRECTORY}")"
 
 
 num_of_arg=$#
-stanford_ner_port=9199
 
 
 if [ ${num_of_arg} -eq 0 ]
@@ -26,23 +25,8 @@ then
 else
   if [ ${1} == "nlp" ]
   then
-    # remove the previous `stanfordNER.log` as to avoid confusion from previous executions
-    if [ -f "${APP_HOME}/stanfordNER.log" ]
-    then
-      rm ${APP_HOME}/stanfordNER.log
-    fi
-    # end of if to check and delete `stanfordNER.log` file
-    # command to start StanfordNER java process
-    nohup java -Djava.ext.dirs=${APP_HOME}/resources/lib \
-    -cp ${APP_HOME}/resources/lib/stanford-ner.jar edu.stanford.nlp.ie.NERServer \
-    -port ${stanford_ner_port} \
-    -loadClassifier ${APP_HOME}/resources/external_classifiers/english.all.3class.distsim.crf.ser.gz > stanfordNER.log &
-    # capture the ner process id
-    ner_pid=$!
     # start the python process
     python -m qc.nlp "${APP_HOME}"
-    # kill the StanfordNER server
-    kill -15 "${ner_pid}"
   elif [ ${1} == "train" ]
   then
     if [ ${num_of_arg} -eq 2 ]

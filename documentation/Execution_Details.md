@@ -31,6 +31,8 @@ The training data (questions/rows) which have the specific coarseClass is used f
 With fineClass as the target/dependent variable. e.g `DESC:def What is an atom ?` and 
 `DESC:reason Why does the moon turn orange ?`, are used to train `desc` model, with targets being `def` and `reason` 
 respectively for the mentioned example questions.
+5. A folder with the model name used, `${ml_algo_model}` (parameter passed to command), is created and the trained model
+are saved inside the respective folders.
 
 *NLP is done once for all*
 

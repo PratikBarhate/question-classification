@@ -1,5 +1,5 @@
 from qc.utils.file_ops import write_obj
-from qc.nlp.proc_coarse import com_annotations, com_ner
+from qc.nlp.proc_coarse import com_annotations
 from qc.nlp.proc_fine import sep_lang_prop
 from qc.pre_processing import raw_processing
 from multiprocessing.pool import ThreadPool
@@ -30,32 +30,6 @@ def coarse_ann_computations(data_type: str, rp: str):
             return False
     else:
         print("\n- ERROR: While computing annotations for {0} data.".format(data))
-        return False
-
-
-def coarse_ner_computations(data_type: str, rp: str):
-    """
-    This method handles the process to compute NER tags using StanfordNER,
-    and does for the test/train text data as per the arguments passed.
-
-    :argument:
-        :param data_type: String either `training` or `test`
-        :param rp: Absolute path of the root directory of the project
-    :return:
-        boolean_flag: True for successful operation.
-    """
-    data = "training" if data_type == "training" else "test"
-    ner_flag, ner_tags = com_ner(data, rp)
-    if ner_flag:
-        ner_w_flag = write_obj(ner_tags, "coarse_{0}_ner".format(data), rp)
-        if ner_w_flag:
-            print("- Computing NER tags for {0} data done.".format(data))
-            return True
-        else:
-            print("\n- ERROR: While writing NER tags for {0} data.".format(data))
-            return False
-    else:
-        print("\n- ERROR: While computing NER tags for {0} data.".format(data))
         return False
 
 
@@ -94,10 +68,10 @@ def fine_prop_separation(data_type: str, rp: str, prop_type: str):
 
 def execute(project_root_path: str):
     """
-    This method starts 4 threads to compute NLP related information, from raw text data.
-    spaCy|StanfordNER * training|test.
+    This method starts 2 threads to compute NLP related information, from raw text data.
+    spaCy * training|test.
 
-    Then again uses the same thread pool of 4 to generate separate files for fine class prediction models.
+    Then again uses the same thread pool of 2 to generate separate files for fine class prediction models.
 
     :argument
         :param project_root_path: Absolute Path of the project
@@ -112,29 +86,20 @@ def execute(project_root_path: str):
     # Create 4 threads for processing training and test raw files
     # 2 Threads to compute annotations from spaCy lib
     # 2 Threads to compute NER tags from StanfordNER Client
-    pool = ThreadPool(processes=4)
+    pool = ThreadPool(processes=2)
     # start the threads and wait for them to finish
     train_ann = pool.apply_async(coarse_ann_computations, args=["training", project_root_path])
     # wait for 1 second to avoid creation of same directory by different threads
     time.sleep(1)
-    train_ner = pool.apply_async(coarse_ner_computations, args=["training", project_root_path])
     test_ann = pool.apply_async(coarse_ann_computations, args=["test", project_root_path])
     # wait for 1 second to avoid creation of same directory by different threads
     time.sleep(1)
-    test_ner = pool.apply_async(coarse_ner_computations, args=["test", project_root_path])
-    test_ann_val = test_ann.get()
-    test_ner_val = test_ner.get()
-    train_ann_val = train_ann.get()
-    train_ner_val = train_ner.get()
-    if not train_ann_val:
+    test_ann_status = test_ann.get()
+    train_ann_status = train_ann.get()
+    if not train_ann_status:
         print("- Error: In computing annotations for training data")
-    if not test_ann_val:
+    if not test_ann_status:
         print("- Error: In computing annotations for test data")
-    if not train_ner_val:
-        print("- Error: In computing NER tags for training data")
-    if not test_ner_val:
-        print("- Error: In computing NER tags for test data")
-    if train_ann_val and test_ann_val and train_ner_val and test_ner_val:
         # timer for end time
         end_nlp = datetime.datetime.now().timestamp()
         total_nlp = datetime.datetime.utcfromtimestamp(end_nlp - start_nlp)
@@ -146,24 +111,16 @@ def execute(project_root_path: str):
     train_sep_ann = pool.apply_async(fine_prop_separation, args=["training", project_root_path, "doc"])
     # wait for 1 second to avoid creation of same directory by different threads
     time.sleep(1)
-    train_sep_ner = pool.apply_async(fine_prop_separation, args=["training", project_root_path, "ner"])
     test_sep_ann = pool.apply_async(fine_prop_separation, args=["test", project_root_path, "doc"])
     # wait for 1 second to avoid creation of same directory by different threads
     time.sleep(1)
-    test_sep_ner = pool.apply_async(fine_prop_separation, args=["test", project_root_path, "ner"])
-    train_sep_ann_val = train_sep_ann.get()
-    train_sep_ner_val = train_sep_ner.get()
-    test_sep_ann_val = test_sep_ann.get()
-    test_sep_ner_val = test_sep_ner.get()
-    if not train_sep_ann_val:
+    train_sep_ann_status = train_sep_ann.get()
+    test_sep_ann_status = test_sep_ann.get()
+    if not train_sep_ann_status:
         print("- Error: In separating annotations for training data")
-    if not test_sep_ann_val:
+    if not test_sep_ann_status:
         print("- Error: In separating annotations for test data")
-    if not train_sep_ner_val:
-        print("- Error: In separating NER tags for training data")
-    if not test_sep_ner_val:
-        print("- Error: In separating NER tags for test data")
-    if train_sep_ann_val and test_sep_ann_val and train_sep_ner_val and test_sep_ner_val:
+    if train_sep_ann_status and test_sep_ann_status:
         # timer for end time
         end_sep = datetime.datetime.now().timestamp()
         total_sep = datetime.datetime.utcfromtimestamp(end_sep - start_sep)
