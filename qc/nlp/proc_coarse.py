@@ -1,6 +1,7 @@
+import spacy
+
 from qc.pre_processing.raw_processing import remove_endline_char
 from qc.utils.file_ops import read_file
-import spacy
 
 
 def com_annotations(data_type: str, rp: str):

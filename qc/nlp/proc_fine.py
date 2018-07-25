@@ -1,5 +1,5 @@
-from qc.utils.file_ops import read_obj, read_file
 from qc.pre_processing.raw_processing import remove_endline_char
+from qc.utils.file_ops import read_obj, read_file
 
 
 def sep_lang_prop(data_type: str, rp: str, prop_type: str):

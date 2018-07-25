@@ -1,6 +1,7 @@
-from qc.ml import train
-from qc.ml import test
 import sys
+
+from qc.ml import test
+from qc.ml import train
 
 if len(sys.argv) != 4:
     print("Error: Expected one argument after module -> root path of the project")

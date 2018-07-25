@@ -1,5 +1,6 @@
-from qc.dataprep.text_features import text_ft_arr
 from scipy.sparse import hstack
+
+from qc.dataprep.text_features import text_ft_arr
 
 
 def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):

@@ -1,11 +1,13 @@
-from qc.utils.file_ops import read_file, write_obj
-from qc.dataprep.feature_stack import get_ft_obj
-from qc.pre_processing.raw_processing import remove_endline_char
-from multiprocessing.pool import ThreadPool
-from sklearn import linear_model
-from sklearn import svm
 import datetime
 import time
+from multiprocessing.pool import ThreadPool
+
+from sklearn import linear_model
+from sklearn import svm
+
+from qc.dataprep.feature_stack import get_ft_obj
+from qc.pre_processing.raw_processing import remove_endline_char
+from qc.utils.file_ops import read_file, write_obj
 
 
 def train_one_node(rp: str, cat_type: str, ml_algo: str):

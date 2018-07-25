@@ -1,6 +1,7 @@
-from configobj import ConfigObj
 import os
 import pickle
+
+from configobj import ConfigObj
 
 # Every write operation is in overwrite mode
 text_file_encoding = "utf8"

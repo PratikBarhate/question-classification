@@ -1,10 +1,11 @@
-from qc.utils.file_ops import write_obj
+import datetime
+import time
+from multiprocessing.pool import ThreadPool
+
 from qc.nlp.proc_coarse import com_annotations
 from qc.nlp.proc_fine import sep_lang_prop
 from qc.pre_processing import raw_processing
-from multiprocessing.pool import ThreadPool
-import datetime
-import time
+from qc.utils.file_ops import write_obj
 
 
 def coarse_ann_computations(data_type: str, rp: str):

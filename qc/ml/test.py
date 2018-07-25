@@ -1,7 +1,8 @@
+import datetime
+
+from qc.dataprep.feature_stack import get_ft_obj
 from qc.pre_processing.raw_processing import remove_endline_char
 from qc.utils.file_ops import read_obj, read_file
-from qc.dataprep.feature_stack import get_ft_obj
-import datetime
 
 
 def get_predictions(rp: str, ml_algo: str):

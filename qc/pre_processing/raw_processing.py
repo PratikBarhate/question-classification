@@ -1,7 +1,8 @@
-from qc.utils.file_ops import write_str_file
-from qc.utils.file_ops import read_file
-from multiprocessing.pool import ThreadPool
 import re
+from multiprocessing.pool import ThreadPool
+
+from qc.utils.file_ops import read_file
+from qc.utils.file_ops import write_str_file
 
 
 def pre_process(raw_sentence):
