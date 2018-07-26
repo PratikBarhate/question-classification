@@ -59,7 +59,7 @@ def get_vect(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type: st
         boolean_flag: True for successful operation.
         count_vec: CountVectorizer object.
     """
-    # --------------------------------------------Experimental code---------------------------------------------------------
+    # --------------------------------------------Experimental code-----------------------------------------------------
     # Other word embeddings technique can also be tried out - e.g GloVe
     if data_type == "training":
         count_vec = CountVectorizer(ngram_range=(1, 2)).fit(text_data)
@@ -72,9 +72,8 @@ def get_vect(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type: st
         print("Error: Wrong `data_type` param to function `dataprep.text.get_vect`")
         return False
 
-
-# Word vectorization initialization ends here.
-# ----------------------------------------------------------------------------------------------------------------------
+    # Word vectorization ends here.
+    # ------------------------------------------------------------------------------------------------------------------
 
 
 def get_info_doc(prop: str, doc_obj):

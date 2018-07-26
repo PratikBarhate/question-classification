@@ -15,7 +15,7 @@ def read_key(file_key: str, rp: str):
     :return:
         value: String - value defined in properties.conf for the given key, appended to the root path of the project.
     """
-    if file_key.endswith("vec") or file_key.endswith("model"):
+    if file_key.endswith("vec") or file_key.endswith("model") or file_key.endswith("binarizer"):
         res_p = "/".join(rp.split("/")[:-1])
     else:
         res_p = rp

@@ -67,7 +67,7 @@ def execute(project_root_path: str, ml_algo: str):
     :return:
         None
     """
-    start_svm = datetime.datetime.now().timestamp()
+    start_train = datetime.datetime.now().timestamp()
     print("\n* Training started - {0} model".format(ml_algo))
     pool = ThreadPool(processes=7)
     coarse_result = pool.apply_async(train_one_node, args=[project_root_path, "coarse", ml_algo])
@@ -101,7 +101,7 @@ def execute(project_root_path: str, ml_algo: str):
     if not num_status:
         print("- Error while training num classifier model")
     if coarse_status and abbr_status and desc_status and enty_status and hum_status and loc_status and num_status:
-        end_svm = datetime.datetime.now().timestamp()
-        total_svm = datetime.datetime.utcfromtimestamp(end_svm - start_svm)
+        end_train = datetime.datetime.now().timestamp()
+        total_train = datetime.datetime.utcfromtimestamp(end_train - start_train)
         print("- Training done : {3} models in {0}h {1}m {2}s"
-              .format(total_svm.hour, total_svm.minute, total_svm.second, ml_algo))
+              .format(total_train.hour, total_train.minute, total_train.second, ml_algo))
