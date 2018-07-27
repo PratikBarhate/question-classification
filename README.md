@@ -6,7 +6,10 @@ Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/
 
 1. _Results from the empirical tests carried out, are in_ [Results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)
 2. _More details about the execution/logic is available in_ [Execution Details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
-Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf). 
+Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
+
+* The data-flow is different for Neural Network, its only a single `coarse` model predicting for 
+all 50 different classes (I will soon update the documentation and results for the same).
 
 #### Dependencies used
 
@@ -34,6 +37,7 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 1. `svm` = Support Vector Machine
 2. `lr` = Logistic Regression
 3. `linear_svm` = Linear Support Vector Classifier (Machine)
+4. `nn` = Neural Network
 
 ##### To clean the outputs
 
@@ -41,6 +45,9 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 2. `./bin/cleanup.sh models` - This will delete all the pre-trained models.
 3. `./bin/cleanup.sh {ml_algo_model}` - This will delete the specific ML model which was pre-trained.
 4. `./bin/cleanup.sh all` - This will delete all the computed data.
+
+* If you add your own model then you have to add the following `if` conditions for specific cleanup and additional line 
+for the same in `all` if condition.
 
 #### Experimental Code
 
@@ -90,7 +97,3 @@ and LinearSVC, as the ML algorithm, for our tasks in the project 'Invoker'.
 
 This project aims at exploring more options to process Natural Language (English), test with various combinations of
 features and improve the accuracy.
-
-#### Future scope
-
-Try to implement shallow neural network using [PyTorch](https://pytorch.org/).

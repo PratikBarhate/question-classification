@@ -31,6 +31,7 @@ class NeuralNet(nn.Module):
     and activation function for each layer.
     """
 
+    # -----------------------------Experimental - Defining the Neural Network structure---------------------------------
     def __init__(self, in_layer: int, out_layer: int):
         super(NeuralNet, self).__init__()
         self.fc1 = nn.Linear(in_layer, 100000)
@@ -44,6 +45,8 @@ class NeuralNet(nn.Module):
         x = torch_func.tanh(self.fc3(x))
         x = self.fc4(x)
         return torch_func.log_softmax(x)
+    # Neural Network structure definition ends here.
+    # ------------------------------------------------------------------------------------------------------------------
 
 
 def get_data_loader(rp: str, data_type: str):
@@ -88,7 +91,7 @@ def get_data_loader(rp: str, data_type: str):
     feat_size = x_ft.shape[1]
     print("- Features loading into numpy done.")
     labels = torch.from_numpy(labels_bin)
-    data = torch.from_numpy(x_ft)
+    data = torch.from_numpy(x_ft).float()
     print("- Features and labels as tensors, done.")
     train_data = TensorDataset(data, labels)
     data_loader = DataLoader(train_data, batch_size=batch_size)
@@ -112,11 +115,16 @@ def train(rp: str):
         None
     """
     start_train = datetime.datetime.now().timestamp()
-    print("Training started - Neural Network")
+    print("* Training started - Neural Network")
     feat_size, train_loader = get_data_loader(rp, "training")
     net_model = NeuralNet(in_layer=feat_size, out_layer=num_of_classes)
+
+    # ----------------------Experimental - Various combinations of optimizer and loss criteria--------------------------
     optimizer = torch.optim.LBFGS(net_model.parameters(), lr=learning_rate, max_iter=5)
     criterion = nn.MultiLabelMarginLoss()
+
+    # Setting optimizer and loss criteria ends here
+    # ------------------------------------------------------------------------------------------------------------------
     print("- Optimizer and loss criteria is set.")
     print("- Looping over the data to train the neural network. It will take some time, have patience.")
     for epoch in range(epochs):
@@ -144,6 +152,24 @@ def test(rp: str):
     :return:
         None
     """
+    start_test = datetime.datetime.now().timestamp()
+    print("* Testing started - Neural Network")
     feat_size, test_loader = get_data_loader(rp, "test")
     net_model = NeuralNet(in_layer=feat_size, out_layer=num_of_classes)
     net_model.load_state_dict(torch.load(read_key("coarse_model", rp + "/{0}".format(nn_model_str))))
+    with torch.no_grad():
+        correct = 0
+        total = 0
+        for data, labels in test_loader:
+            data_on_dev = data.to(device)
+            labels_on_dev = labels.to(device)
+            outputs = net_model(data_on_dev)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels_on_dev.size(0)
+            correct += (predicted == labels_on_dev).sum().item()
+        print("- Result: Accuracy of the network on the {0} test records is {1}%"
+              .format(total, round(100 * correct / total, 4)))
+    end_test = datetime.datetime.now().timestamp()
+    total_test = datetime.datetime.utcfromtimestamp(end_test - start_test)
+    print("- Testing done : {3} model in {0}h {1}m {2}s"
+          .format(total_test.hour, total_test.minute, total_test.second, "{0}".format(nn_model_str)))

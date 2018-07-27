@@ -115,6 +115,8 @@ def execute(project_root_path: str, ml_algo: str):
     :return:
         None
     """
+    start_test = datetime.datetime.now().timestamp()
+    print("\n* Testing started - {0} model".format(ml_algo))
     pred = get_predictions(project_root_path, ml_algo)
     actual = get_actual(project_root_path)
     tl = len(pred)
@@ -129,3 +131,7 @@ def execute(project_root_path: str, ml_algo: str):
     accuracy = (correct / tl) * 100
     print("- Number of correct predictions are {0} out of {1} total".format(correct, tl))
     print("- Result: Accuracy of {0} model is {1}%".format(ml_algo, round(accuracy, 4)))
+    end_test = datetime.datetime.now().timestamp()
+    total_test = datetime.datetime.utcfromtimestamp(end_test - start_test)
+    print("- Testing done : {3} models in {0}h {1}m {2}s"
+          .format(total_test.hour, total_test.minute, total_test.second, ml_algo))
