@@ -84,9 +84,7 @@ def execute(project_root_path: str):
     # start timer
     start_nlp = datetime.datetime.now().timestamp()
     print("\n* NLP - Process started")
-    # Create 4 threads for processing training and test raw files
     # 2 Threads to compute annotations from spaCy lib
-    # 2 Threads to compute NER tags from StanfordNER Client
     pool = ThreadPool(processes=2)
     # start the threads and wait for them to finish
     train_ann = pool.apply_async(coarse_ann_computations, args=["training", project_root_path])
