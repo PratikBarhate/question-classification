@@ -18,6 +18,7 @@ all 50 different classes (I will soon update the documentation and results for t
 3. spaCy - v2.0.11 (with "en_core_web_lg" english model)
 4. scipy - v1.0.0
 5. scikit-learn - v0.19.1
+6. torch (PyTorch) - v0.4.0
 
 #### Execution
 
