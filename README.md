@@ -2,7 +2,7 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)    [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4a93dde781c5421d9078f49687df8bf1)](https://www.codacy.com/app/Pratik-Barhate/question-classification)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
 
-Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/).
+Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/) {UIUC's CogComp QC Dataset}.
 
 1. _Results from the empirical tests carried out, are in_ [Results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)
 2. _More details about the execution/logic is available in_ [Execution Details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
@@ -98,3 +98,7 @@ and LinearSVC, as the ML algorithm, for our tasks in the project 'Invoker'.
 
 This project aims at exploring more options to process Natural Language (English), test with various combinations of
 features and improve the accuracy.
+
+#### References
+
+[High-Performance Question Classification Using Semantic Features](https://nlp.stanford.edu/courses/cs224n/2010/reports/olalerew.pdf)
