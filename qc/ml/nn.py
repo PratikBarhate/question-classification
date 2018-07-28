@@ -129,7 +129,7 @@ def train(rp: str):
     print("- Optimizer and loss criteria is set.")
     print("- Looping over the data to train the neural network. It will take some time, have patience.")
     for _ in range(epochs):
-        for (data, labels) in enumerate(train_loader):
+        for _, (data, labels) in enumerate(train_loader):
             data_on_dev = data.to(device)
             labels_on_dev = labels.to(device)
             outputs = net_model(data_on_dev)
