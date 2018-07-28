@@ -80,7 +80,8 @@ def get_data_loader(rp: str, data_type: str):
     if not frf:
         print("Error in reading actual ({0}) fine classes".format(data_type))
         exit(-11)
-    for i in range(0, len(f_lb)):
+    label_len = len(f_lb)
+    for i in range(0, label_len):
         labels_numpy.append(c_lb[i] + " :: " + f_lb[i])
     mlb = MultiLabelBinarizer().fit(labels_numpy) if data_type == "training" \
         else read_obj("label_binarizer", rp + "/{0}".format(nn_model_str))[1]
@@ -127,8 +128,8 @@ def train(rp: str):
     # ------------------------------------------------------------------------------------------------------------------
     print("- Optimizer and loss criteria is set.")
     print("- Looping over the data to train the neural network. It will take some time, have patience.")
-    for epoch in range(epochs):
-        for i, (data, labels) in enumerate(train_loader):
+    for _ in range(epochs):
+        for (data, labels) in enumerate(train_loader):
             data_on_dev = data.to(device)
             labels_on_dev = labels.to(device)
             outputs = net_model(data_on_dev)
