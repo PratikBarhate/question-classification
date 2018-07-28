@@ -99,10 +99,10 @@ def execute(project_root_path: str):
         print("- Error: In computing annotations for training data")
     if not test_ann_status:
         print("- Error: In computing annotations for test data")
-        # timer for end time
-        end_nlp = datetime.datetime.now().timestamp()
-        total_nlp = datetime.datetime.utcfromtimestamp(end_nlp - start_nlp)
-        print("- NLP : Done in {0}h {1}m {2}s".format(total_nlp.hour, total_nlp.minute, total_nlp.second))
+    # timer for end time
+    end_nlp = datetime.datetime.now().timestamp()
+    total_nlp = datetime.datetime.utcfromtimestamp(end_nlp - start_nlp)
+    print("- NLP : Done in {0}h {1}m {2}s".format(total_nlp.hour, total_nlp.minute, total_nlp.second))
     # separate the computed Natural language properties for each coarse class (main categories)
     print("\n* Separating NLP properties for each of the Coarse classes (categories)")
     # use the same thread created before
