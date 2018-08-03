@@ -4,10 +4,10 @@
 
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/) (UIUC's CogComp QC Dataset).
 
-1. _Results from the empirical tests carried out, are in_ [Results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md).
+1. Results from the empirical tests carried out, are in [results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md) file.
 All the results are for `coarse:fine`, combined prediction class out of the total 50 classes.
-2. _More details about the execution/logic is available in_ [Execution Details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
-3. _Diagrammatic representation of the data flow can be accessed_ [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
+2. More details about the execution/logic is available in [Execution Details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
+3. Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
 
 * The data-flow is different for Neural Network, its only a single `coarse` model predicting for 
 all 50 different classes (I will soon update the documentation and results for the same).
