@@ -2,11 +2,12 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)    [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4a93dde781c5421d9078f49687df8bf1)](https://www.codacy.com/app/Pratik-Barhate/question-classification)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
 
-Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/) {UIUC's CogComp QC Dataset}.
+Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/) (UIUC's CogComp QC Dataset).
 
-1. _Results from the empirical tests carried out, are in_ [Results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md)
+1. _Results from the empirical tests carried out, are in_ [Results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md).
+All the results are for `coarse:fine`, combined prediction class out of the total 50 classes.
 2. _More details about the execution/logic is available in_ [Execution Details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
-Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
+3. _Diagrammatic representation of the data flow can be accessed_ [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
 
 * The data-flow is different for Neural Network, its only a single `coarse` model predicting for 
 all 50 different classes (I will soon update the documentation and results for the same).

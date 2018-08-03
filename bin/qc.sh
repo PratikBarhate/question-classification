@@ -20,8 +20,9 @@ num_of_arg=$#
 if [ ${num_of_arg} -eq 0 ]
 then
   echo "At least one argument required. Following are the expected arguments:-"
-  echo "1. pre-process (to only split the raw data and their classes in different text file)"
-  echo "2. nlp (to complete all the NLP operations)"
+  echo "1. 'nlp' - complete all the NLP operations and save the annotations."
+  echo "2. 'train' - training process of all the 7 models required or a single Neural Network."
+  echo "3. 'test' - test the empirical accuracy of the system to predict 'coarse:fine' class"
 else
   if [ ${1} == "nlp" ]
   then
