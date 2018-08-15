@@ -6,7 +6,7 @@ Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/
 
 1. Results from the empirical tests carried out, are in [results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md) file.
 All the results are for `coarse:fine`, combined prediction class out of the total 50 classes.
-2. More details about the execution/logic is available in [Execution Details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
+2. More details about the execution/logic is available in [execution details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
 3. Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
 
 * The data-flow is different for Neural Network, its only a single `coarse` model predicting for 
@@ -95,7 +95,7 @@ for the same in `all` if condition.
 This project has been inspired from one of the problem we tried to solve - understanding the question for our QA bot.
 In a project named `Invoker`, I did work with [Akash Pateria](https://github.com/Akash-Pateria), we worked together
 in the final year graduate project. We did use python - v2.7, [practNLPtools](https://github.com/biplab-iitb/practNLPTools), 
-and LinearSVC, as the ML algorithm, for our tasks in the project 'Invoker'.
+and LinearSVC, as the ML algorithm, for our tasks in the project `Invoker`.
 
 This project aims at exploring more options to process Natural Language (English), test with various combinations of
 features and improve the accuracy.
