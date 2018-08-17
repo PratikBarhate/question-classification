@@ -16,9 +16,9 @@ APP_HOME="$(dirname "${SCRIPT_DIRECTORY}")"
 
 # check for the number arguments provided are as expected or not
 num_of_arg=$#
-if [ ! ${num_of_arg} -eq 1 ]
+if [ ${num_of_arg} -eq 0 ]
 then
-  echo "One argument expected. Given ${num_of_arg}"
+  echo "At least one argument expected. Given ${num_of_arg}"
   exit 1
 fi
 
