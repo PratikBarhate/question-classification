@@ -44,12 +44,11 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 ##### To clean the outputs
 
 1. `./bin/cleanup.sh nlp` - This will delete all the NLP related data.
-2. `./bin/cleanup.sh models` - This will delete all the pre-trained models.
-3. `./bin/cleanup.sh {ml_algo_model}` - This will delete the specific ML model which was pre-trained.
+2. `./bin/cleanup.sh all_models` - This will delete all the pre-trained models.
+3. `./bin/cleanup.sh model ${ml_algo_model}` - This will delete the specific ML model which was pre-trained.
 4. `./bin/cleanup.sh all` - This will delete all the computed data.
 
-* If you add your own model then you have to add the following `if` conditions for specific cleanup and additional line 
-for the same in `all` if condition.
+* `all_models` will not clean the additional model defined by you. It will only clean the models mentioned above.
 
 #### Experimental Code
 

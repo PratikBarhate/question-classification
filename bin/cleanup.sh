@@ -31,7 +31,7 @@ then
   rm -rf "${APP_HOME}/lr"
   rm -rf "${APP_HOME}/linear_svm"
   rm -rf "${APP_HOME}/nn"
-elif [ ${1} == "models" ]
+elif [ ${1} == "all_models" ]
 then
   rm -rf "${APP_HOME}/svm"
   rm -rf "${APP_HOME}/lr"
@@ -39,18 +39,14 @@ then
 elif [ ${1} == "nlp" ]
 then
   rm -rf "${APP_HOME}/common_data"
-elif [ ${1} == "nn" ]
+elif [ ${1} == "model" ]
 then
-  rm -rf "${APP_HOME}/nn"
-elif [ ${1} == "svm" ]
-then
-  rm -rf "${APP_HOME}/svm"
-elif [ ${1} == "lr" ]
-then
-  rm -rf "${APP_HOME}/lr"
-elif [ ${1} == "linear_svm" ]
-then
-  rm -rf "${APP_HOME}/linear_svm"
+  if [ ! ${num_of_arg} -eq 2 ]
+  then
+    echo "One more argument expected with 'model', 'ml_algo_model' - model name."
+    exit 1
+  fi
+  rm -rf "${APP_HOME}/${2}"
 else
   echo "Unexpected argument: ${1}"
 fi

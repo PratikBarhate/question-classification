@@ -18,7 +18,7 @@ num_of_classes = 50
 # --------------------------------------------Experimental - Execution Parameters---------------------------------------
 epochs = 50
 batch_size = 50
-learning_rate = 1E-6
+learning_rate = 1E-4
 
 
 # Execution parameter tuning ends here.
@@ -34,16 +34,14 @@ class NeuralNet(nn.Module):
     # -----------------------------Experimental - Defining the Neural Network structure---------------------------------
     def __init__(self, in_layer: int, out_layer: int):
         super(NeuralNet, self).__init__()
-        self.fc1 = nn.Linear(in_layer, 100000)
-        self.fc2 = nn.Linear(100000, 50000)
-        self.fc3 = nn.ReLU()
-        self.fc4 = nn.Linear(50000, out_layer)
+        self.fc1 = nn.Linear(in_layer, 50000)
+        self.fc2 = nn.ReLU()
+        self.fc3 = nn.Linear(50000, out_layer)
 
     def forward(self, x):
         x = torch_func.tanh(self.fc1(x))
         x = torch_func.tanh(self.fc2(x))
-        x = torch_func.tanh(self.fc3(x))
-        x = self.fc4(x)
+        x = self.fc3(x)
         return torch_func.log_softmax(x)
     # Neural Network structure definition ends here.
     # ------------------------------------------------------------------------------------------------------------------
