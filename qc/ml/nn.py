@@ -34,15 +34,14 @@ class NeuralNet(nn.Module):
     # -----------------------------Experimental - Defining the Neural Network structure---------------------------------
     def __init__(self, in_layer: int, out_layer: int):
         super(NeuralNet, self).__init__()
+        self.out_layer = out_layer
         self.fc1 = nn.Linear(in_layer, 50000)
-        self.fc2 = nn.ReLU()
-        self.fc3 = nn.Linear(50000, out_layer)
+        self.fc2 = nn.Linear(50000, out_layer)
 
     def forward(self, x):
-        x = torch_func.tanh(self.fc1(x))
-        x = torch_func.tanh(self.fc2(x))
-        x = self.fc3(x)
-        return torch_func.log_softmax(x)
+        x = torch_func.relu(self.fc1(x))
+        x = torch_func.relu(self.fc2(x))
+        return torch_func.relu(x)
     # Neural Network structure definition ends here.
     # ------------------------------------------------------------------------------------------------------------------
 
@@ -120,20 +119,21 @@ def train(rp: str):
 
     # ----------------------Experimental - Various combinations of optimizer and loss criteria--------------------------
     optimizer = torch.optim.LBFGS(net_model.parameters(), lr=learning_rate, max_iter=5)
-    criterion = nn.MultiLabelMarginLoss()
+    criterion = nn.CrossEntropyLoss()
 
     # Setting optimizer and loss criteria ends here
     # ------------------------------------------------------------------------------------------------------------------
     print("- Optimizer and loss criteria is set.")
     print("- Looping over the data to train the neural network. It will take some time, have patience.")
-    for _ in range(epochs):
+    for e in range(epochs):
         for _, (data, labels) in enumerate(train_loader):
             data_on_dev = data.to(device)
             labels_on_dev = labels.to(device)
             outputs = net_model(data_on_dev)
-            loss = criterion(outputs, labels_on_dev)
+            loss = criterion(outputs, torch.max(labels_on_dev, 1)[1])
             optimizer.zero_grad()
             loss.backward()
+        print("NN:> Epoch {0} complete".format(e))
     torch.save(net_model.state_dict(), read_key("coarse_model", rp + "/{0}".format(nn_model_str)))
     end_train = datetime.datetime.now().timestamp()
     total_train = datetime.datetime.utcfromtimestamp(end_train - start_train)

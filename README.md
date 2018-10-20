@@ -16,6 +16,7 @@ all 50 different classes (I will soon update the documentation and results for t
 
 1. python - v3.6.3
 2. configobj - v5.0.6
+3. numpy - v1.15.0
 3. spaCy - v2.0.11 (with "en_core_web_lg" english model)
 4. scipy - v1.0.0
 5. scikit-learn - v0.19.1
