@@ -94,7 +94,7 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 This project has been inspired from one of the problem we tried to solve - understanding the question for our QA bot.
 In a project named `Invoker`, I did work with [Akash Pateria](https://github.com/Akash-Pateria), we worked together
-in the final year graduate project. We did use python - v2.7, [practNLPtools](https://github.com/biplab-iitb/practNLPTools), 
+in the undergraduate capstone project. We did use python - v2.7, [practNLPtools](https://github.com/biplab-iitb/practNLPTools), 
 and LinearSVC, as the ML algorithm, for our tasks in the project `Invoker`.
 
 This project aims at exploring more options to process Natural Language (English), test with various combinations of
