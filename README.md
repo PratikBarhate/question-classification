@@ -24,6 +24,8 @@ all 50 different classes.
 
 #### Execution
 
+###### `bin` executable files are helpful only for Linux or macOS users. Microsoft users please execute the python modules by matching your requirement from the shell scripts.
+
 _Check your systems' text encoding scheme. It is set to `text_file_encoding = "utf8"`, can be changed in `qc.utils.file_ops.py`._
 
 1. Go to the project directory.
