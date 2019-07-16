@@ -3,7 +3,7 @@
 _Note: With default parameters LinearSVC was giving highest accuracy, hence all the results other than Machine learning
 algorithms' parameter tuning, i.e feature generation and vectorization results are produced using LinerSVC model of
 sklearn. Features used all the time, 'including' the case while testing feature stack, are - NER, TAG, DEP, is-STOP.
-Accuracy mentioned is empirical percent accuracy_
+Accuracy mentioned is empirical accuracy (percent)_
 
 #### CountVectorizer of sklearn
 
