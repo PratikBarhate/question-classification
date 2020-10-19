@@ -12,6 +12,8 @@ from qc.utils.file_ops import read_file, write_obj, read_obj, read_key
 
 # Device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print('Using device:', device, '\n')
+
 nn_model_str = "nn"
 num_of_classes = 50
 
@@ -116,6 +118,8 @@ def train(rp: str):
     print("* Training started - Neural Network")
     feat_size, train_loader = get_data_loader(rp, "training")
     net_model = NeuralNet(in_layer=feat_size, out_layer=num_of_classes)
+    net_model.to(device)
+
 
     # ----------------------Experimental - Various combinations of optimizer and loss criteria--------------------------
     optimizer = torch.optim.LBFGS(net_model.parameters(), lr=learning_rate, max_iter=5)
@@ -156,6 +160,8 @@ def test(rp: str):
     feat_size, test_loader = get_data_loader(rp, "test")
     net_model = NeuralNet(in_layer=feat_size, out_layer=num_of_classes)
     net_model.load_state_dict(torch.load(read_key("coarse_model", rp + "/{0}".format(nn_model_str))))
+    net_model.to(device)
+    
     with torch.no_grad():
         correct = 0
         total = 0
