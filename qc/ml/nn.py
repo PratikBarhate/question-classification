@@ -3,7 +3,7 @@ import datetime
 import torch
 import torch.nn as nn
 import torch.nn.functional as torch_func
-from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.preprocessing import LabelBinarizer
 from torch.utils.data import TensorDataset, DataLoader
 
 from qc.dataprep.feature_stack import get_ft_obj
@@ -82,7 +82,7 @@ def get_data_loader(rp: str, data_type: str):
     label_len = len(f_lb)
     for i in range(0, label_len):
         labels_numpy.append(c_lb[i] + " :: " + f_lb[i])
-    mlb = MultiLabelBinarizer().fit(labels_numpy) if data_type == "training" \
+    mlb = LabelBinarizer().fit(labels_numpy) if data_type == "training" \
         else read_obj("label_binarizer", rp + "/{0}".format(nn_model_str))[1]
     labels_bin = mlb.transform(labels_numpy)
     write_obj(mlb, "label_binarizer", rp + "/{0}".format(nn_model_str))
