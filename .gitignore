@@ -20,6 +20,7 @@
 *.jar
 *.tar
 *.zip
+venv
 
 
 # Logs and databases #
