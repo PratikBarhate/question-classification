@@ -44,9 +44,19 @@ is an alphabet or not.
 3. `C=0.025` - 2.4%
 4. `max_iter=750` - 14.2%
 
+#### Neural Network (nn)
+
+Coarse accuracy (only the main class) = 89.4%\
+Fine accuracy (both main class and subclass) = 82.8%
+
+Tested different combinations of epochs, batch size, layers etc. Almost all are 76-82% fine accuracy.
+
 #### Linear Support Vector Machine (linear_svm)
 
 _LinearSVC module is more efficient than svm with kernel="linear"_
 
 1. All Default - 84.2%
 2. `loss="squared_hinge"` and `dual=False` - 84.2%, with `dual=True` also gives same accuracy.
+
+Coarse accuracy (only the main class) = 91.2%\
+Fine accuracy (both main class and subclass) = 84.2%
