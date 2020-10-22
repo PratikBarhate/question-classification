@@ -1,4 +1,4 @@
-Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
+Diagrammatic representation of the data flow can be accessed [here](Data_Flow_diagram.pdf).
 
 #### Natural Language processing
 
