@@ -17,7 +17,7 @@
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/) (UIUC's CogComp QC Dataset).
 
 1. Results from the empirical tests carried out, are in [results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md) file.
-All the results are for `coarse:fine`, combined prediction class out of the total 50 classes.
+All the results are for `coarse:fine`, combined prediction class out of the total 50 classes, if not stated otherwise.
 2. More details about the execution/logic is available in [execution details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
 3. Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
 
