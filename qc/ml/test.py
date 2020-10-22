@@ -117,20 +117,26 @@ def execute(project_root_path: str, ml_algo: str):
     """
     start_test = datetime.datetime.now().timestamp()
     print("\n* Testing started - {0} model".format(ml_algo))
+    
     pred = get_predictions(project_root_path, ml_algo)
     actual = get_actual(project_root_path)
+    
     tl = len(pred)
-    correct = 0
-    wrong = 0
+    correct_coarse = 0
+    correct_fine = 0
+
     for i in range(0, tl):
-        if pred[i][0] == actual[i][0] and pred[i][1] == actual[i][1]:
-            correct = correct + 1
-        else:
-            wrong = wrong + 1
-    # error_perc = (wrong/l) * 100
-    accuracy = (correct / tl) * 100
-    print("- Number of correct predictions are {0} out of {1} total".format(correct, tl))
-    print("- Result: Accuracy of {0} model is {1}%".format(ml_algo, round(accuracy, 4)))
+        if pred[i][0] == actual[i][0]:
+            correct_coarse += 1
+            if pred[i][1] == actual[i][1]:
+                correct_fine += 1
+    
+    coarse_accuracy = (correct_coarse / tl) * 100
+    fine_accuracy = (correct_fine / tl) * 100
+    
+    print("- Number of correct coarse predictions are {0} out of {1} total, fine predictions are correct in {2} of {1} total".format(correct_coarse, tl, correct_fine))
+    print("- Result: Accuracy of {0} model is {1}% coarse, {2}% fine".format(ml_algo, round(coarse_accuracy, 4), round(fine_accuracy, 4)))
+     
     end_test = datetime.datetime.now().timestamp()
     total_test = datetime.datetime.utcfromtimestamp(end_test - start_test)
     print("- Testing done : {3} models in {0}h {1}m {2}s"
