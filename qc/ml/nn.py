@@ -12,15 +12,14 @@ from qc.utils.file_ops import read_file, write_obj, read_obj, read_key
 
 # Device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print('Using device:', device, '\n')
 
 nn_model_str = "nn"
 num_of_classes = 50
 
 # --------------------------------------------Experimental - Execution Parameters---------------------------------------
-epochs = 50
-batch_size = 50
-learning_rate = 1E-4
+epochs = 750
+batch_size = 128
+learning_rate = 0.001
 
 
 # Execution parameter tuning ends here.
@@ -37,13 +36,13 @@ class NeuralNet(nn.Module):
     def __init__(self, in_layer: int, out_layer: int):
         super(NeuralNet, self).__init__()
         self.out_layer = out_layer
-        self.fc1 = nn.Linear(in_layer, 50000)
-        self.fc2 = nn.Linear(50000, out_layer)
+        self.fc1 = nn.Linear(in_layer, 500)
+        self.fc2 = nn.Linear(500, out_layer)
 
     def forward(self, x):
         x = torch_func.relu(self.fc1(x))
-        x = torch_func.relu(self.fc2(x))
-        return torch_func.relu(x)
+        x = torch_func.softmax(self.fc2(x), dim=1)
+        return x
     # Neural Network structure definition ends here.
     # ------------------------------------------------------------------------------------------------------------------
 
@@ -96,7 +95,7 @@ def get_data_loader(rp: str, data_type: str):
     train_data = TensorDataset(data, labels)
     data_loader = DataLoader(train_data, batch_size=batch_size)
     print("- {0} loader done.".format(data_type))
-    return feat_size, data_loader
+    return feat_size, data_loader, mlb
 
 
 def train(rp: str):
@@ -116,28 +115,59 @@ def train(rp: str):
     """
     start_train = datetime.datetime.now().timestamp()
     print("* Training started - Neural Network")
-    feat_size, train_loader = get_data_loader(rp, "training")
+    print('Using device:', device, '\n')
+
+    feat_size, train_loader, _ = get_data_loader(rp, "training")
     net_model = NeuralNet(in_layer=feat_size, out_layer=num_of_classes)
     net_model.to(device)
 
-
     # ----------------------Experimental - Various combinations of optimizer and loss criteria--------------------------
-    optimizer = torch.optim.LBFGS(net_model.parameters(), lr=learning_rate, max_iter=5)
+    optimizer = torch.optim.Adam(net_model.parameters(), lr=learning_rate)
     criterion = nn.CrossEntropyLoss()
 
     # Setting optimizer and loss criteria ends here
     # ------------------------------------------------------------------------------------------------------------------
     print("- Optimizer and loss criteria is set.")
     print("- Looping over the data to train the neural network. It will take some time, have patience.")
+
+    running_loss = 0.0
+
     for e in range(epochs):
-        for _, (data, labels) in enumerate(train_loader):
+
+        correct = 0
+        total = 0
+
+        for i, (data, labels) in enumerate(train_loader):
             data_on_dev = data.to(device)
             labels_on_dev = labels.to(device)
-            outputs = net_model(data_on_dev)
-            loss = criterion(outputs, torch.max(labels_on_dev, 1)[1])
+
+            # zero the parameter gradients
             optimizer.zero_grad()
+
+            # forward + backward + optimize
+            outputs = net_model(data_on_dev)
+            predicted_label_indices = torch.argmax(outputs.data, 1)
+            correct_label_indices = torch.argmax(labels_on_dev, 1)
+
+            loss = criterion(outputs, correct_label_indices)
+            correct += (predicted_label_indices == correct_label_indices).sum().item()
+            total += correct_label_indices.size(0)
+
             loss.backward()
+            optimizer.step()
+
+            # print statistics
+            running_loss += loss.item()
+            minibatch_size = 10
+            if i % minibatch_size == minibatch_size - 1:  # print every X mini-batches
+                print('[%d, %5d] loss: %.3f' %
+                      (e + 1, i + 1, running_loss / minibatch_size))
+                running_loss = 0.0
+
         print("NN:> Epoch {0} complete".format(e))
+        print("NN:> Epoch result: Accuracy of the network on the {0} test records is {1}%"
+              .format(total, round(100 * correct / total, 4)))
+
     torch.save(net_model.state_dict(), read_key("coarse_model", rp + "/{0}".format(nn_model_str)))
     end_train = datetime.datetime.now().timestamp()
     total_train = datetime.datetime.utcfromtimestamp(end_train - start_train)
@@ -157,24 +187,43 @@ def test(rp: str):
     """
     start_test = datetime.datetime.now().timestamp()
     print("* Testing started - Neural Network")
-    feat_size, test_loader = get_data_loader(rp, "test")
+    print('Using device:', device, '\n')
+
+    feat_size, test_loader, mlb = get_data_loader(rp, "test")
     net_model = NeuralNet(in_layer=feat_size, out_layer=num_of_classes)
     net_model.load_state_dict(torch.load(read_key("coarse_model", rp + "/{0}".format(nn_model_str))))
     net_model.to(device)
-    
+
     with torch.no_grad():
-        correct = 0
+        correct_fine = 0
+        correct_coarse = 0
         total = 0
         for data, labels in test_loader:
             data_on_dev = data.to(device)
             labels_on_dev = labels.to(device)
+
             outputs = net_model(data_on_dev)
-            _, predicted = torch.max(outputs.data, 1)
-            total += labels_on_dev.size(0)
-            correct += (predicted == labels_on_dev).sum().item()
-        print("- Result: Accuracy of the network on the {0} test records is {1}%"
-              .format(total, round(100 * correct / total, 4)))
+
+            predicted_label_indices = torch.argmax(outputs.data, 1)
+            correct_label_indices = torch.argmax(labels_on_dev, 1)
+
+            correct_fine += (predicted_label_indices == correct_label_indices).sum().item()
+            total += correct_label_indices.size(0)
+
+            correct_labels = mlb.inverse_transform(labels.numpy())
+            predicted_labels = mlb.inverse_transform(outputs.data.cpu().numpy())
+
+            correct_coarse_labels = [l.split(' :: ')[0] for l in correct_labels]
+            predicted_coarse_labels = [l.split(' :: ')[0] for l in predicted_labels]
+
+            for i, correct_coarse_label in enumerate(correct_coarse_labels):
+                correct_coarse += 1 if correct_coarse_label == predicted_coarse_labels[i] else 0
+
+        print("- Result: Accuracy of the network on the {0} test records is {1}% coarse, {2}% fine"
+              .format(total, round(100 * correct_coarse / total, 4), round(100 * correct_fine / total, 4)))
+
     end_test = datetime.datetime.now().timestamp()
     total_test = datetime.datetime.utcfromtimestamp(end_test - start_test)
+
     print("- Testing done : {3} model in {0}h {1}m {2}s"
           .format(total_test.hour, total_test.minute, total_test.second, "{0}".format(nn_model_str)))
