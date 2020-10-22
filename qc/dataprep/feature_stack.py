@@ -3,7 +3,7 @@ from scipy.sparse import hstack
 from qc.dataprep.text_features import text_ft_arr
 
 
-def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
+def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str, data: list = None):
     """
     This method gets the vectorized features and stacks them horizontally.
 
@@ -13,6 +13,7 @@ def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
         :param ml_algo: Machine algorithm for which the dataprep is running.
         :param cat_type: Type of categorical class `coarse` or any of the 6 main classes.
                                         (`abbr` | `desc` | `enty` | `hum` | `loc` | `num`)
+        :param data: list of Docs that are output of NLP process, provide this attribute in case data_type='api'
     :return:
         boolean_flag: True for successful operation.
         x_all_ft: numpy array of features to be feed to a Machine Learning algorithm.
@@ -28,15 +29,15 @@ def get_ft_obj(data_type: str, rp: str, ml_algo: str, cat_type: str):
     # -------------------------------------------Experimental code------------------------------------------------------
     # Here you can select and tune feature stack.
 
-    # p_ft = text_ft_arr(data_type, rp, "pos", ml_algo, cat_type)[1]
-    # w_ft = text_ft_arr(data_type, rp, "word", ml_algo, cat_type)[1]
-    # a_ft = text_ft_arr(data_type, rp, "alpha", ml_algo, cat_type)[1]
-    l_ft = text_ft_arr(data_type, rp, "lemma", ml_algo, cat_type)[1]
-    t_ft = text_ft_arr(data_type, rp, "tag", ml_algo, cat_type)[1]
-    d_ft = text_ft_arr(data_type, rp, "dep", ml_algo, cat_type)[1]
-    s_ft = text_ft_arr(data_type, rp, "shape", ml_algo, cat_type)[1]
-    st_ft = text_ft_arr(data_type, rp, "stop", ml_algo, cat_type)[1]
-    n_ft = text_ft_arr(data_type, rp, "ner", ml_algo, cat_type)[1]
+    # p_ft = text_ft_arr(data_type, rp, "pos", ml_algo, cat_type, data)[1]
+    # w_ft = text_ft_arr(data_type, rp, "word", ml_algo, cat_type, data)[1]
+    # a_ft = text_ft_arr(data_type, rp, "alpha", ml_algo, cat_type, data)[1]
+    l_ft = text_ft_arr(data_type, rp, "lemma", ml_algo, cat_type, data)[1]
+    t_ft = text_ft_arr(data_type, rp, "tag", ml_algo, cat_type, data)[1]
+    d_ft = text_ft_arr(data_type, rp, "dep", ml_algo, cat_type, data)[1]
+    s_ft = text_ft_arr(data_type, rp, "shape", ml_algo, cat_type, data)[1]
+    st_ft = text_ft_arr(data_type, rp, "stop", ml_algo, cat_type, data)[1]
+    n_ft = text_ft_arr(data_type, rp, "ner", ml_algo, cat_type, data)[1]
     x_all_ft = hstack([t_ft, d_ft, n_ft, st_ft, l_ft, s_ft])
 
     # Feature stack  ends here.

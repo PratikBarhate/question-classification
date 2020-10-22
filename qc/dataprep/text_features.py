@@ -4,27 +4,31 @@ from sklearn.feature_extraction.text import CountVectorizer
 from qc.utils.file_ops import read_obj, write_obj
 
 
-def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type: str):
+def text_ft_arr(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type: str, data: list):
     """
     This method reads the list of `doc` objects written to secondary memory by NLP process.
     For the list of objects gets the Word Vectorizer to convert text data to numeric data and transforms
     the list of text data to vectorized features.
 
     :argument:
-        :param data_type: String either `training` or `test`.
+        :param data_type: String either `training`, `test` or `api`.
         :param rp: Absolute path of the root directory of the project.
         :param prop_type: Natural language property either `word` | `lemma` | `pos` | `tag` | `dep` |
                           `shape` | `alpha` | `stop` | `ner` | (from spaCy)
         :param ml_algo: Machine algorithm for which the dataprep is running.
         :param cat_type: Type of categorical class `coarse` or any of the 6 main classes.
                          (`abbr` | `desc` | `enty` | `hum` | `loc` | `num`)
+        :param data: if data_type='api' then provide the list of Docs here (does not read them from file)
     :return:
         boolean_flag: True for successful operation.
         text_ft: feature vectorized to be used in ML algorithms.
     """
     list_doc_prop = ["word", "lemma", "pos", "tag", "dep", "shape", "alpha", "stop", "ner"]
     if prop_type in list_doc_prop:
-        if data_type == "training":
+        if data_type == "api":
+            flag = True
+            doc_list_obj = data
+        elif data_type == "training":
             flag, doc_list_obj = read_obj("{1}_{0}_doc".format(data_type, cat_type), rp)
         else:
             flag, doc_list_obj = read_obj("coarse_{0}_doc".format(data_type), rp)
@@ -65,7 +69,7 @@ def get_vect(data_type: str, rp: str, prop_type: str, ml_algo: str, cat_type: st
         count_vec = CountVectorizer(ngram_range=(1, 2)).fit(text_data)
         wflag = write_obj(count_vec, "{0}_{1}_vec".format(cat_type, prop_type), rp + "/{0}".format(ml_algo))
         return wflag, count_vec
-    elif data_type == "test":
+    elif data_type == "test" or data_type == "api":
         rflag, count_vec = read_obj("{0}_{1}_vec".format(cat_type, prop_type), rp + "/{0}".format(ml_algo))
         return rflag, count_vec
     else:

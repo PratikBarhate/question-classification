@@ -1,7 +1,16 @@
 import spacy
 
-from qc.pre_processing.raw_processing import remove_endline_char
+from qc.pre_processing.raw_processing import remove_endline_char, remove_space_before_apost, remove_extra_spaces, \
+    pre_process
 from qc.utils.file_ops import read_file
+
+nlp = None
+
+
+def load_spacy():
+    global nlp
+    if nlp is None:
+        nlp = spacy.load("en_core_web_lg")
 
 
 def com_annotations(data_type: str, rp: str):
@@ -17,7 +26,8 @@ def com_annotations(data_type: str, rp: str):
         boolean_flag: True for successful operation.
         all_annotations: List of doc (spaCy containers) of all the lines in the data.
     """
-    nlp = spacy.load("en_core_web_lg")
+    load_spacy()
+
     all_annotations = []
     read_flag, file = read_file("raw_sentence_{0}".format(data_type), rp)
     if read_flag:
@@ -28,3 +38,30 @@ def com_annotations(data_type: str, rp: str):
         return True, all_annotations
     else:
         return False
+
+
+def com_annotations_param(text: str):
+    """
+    Same as com_annotations() above but the input is not a file but the function parameter `text`.
+
+    :argument:
+        :param text Input text to be annotated.
+    :return:
+        boolean_flag: True for successful operation.
+        annotation: doc (spaCy container)
+    """
+    load_spacy()
+
+    sanitized_text = remove_endline_char(
+        remove_space_before_apost(
+            remove_extra_spaces(
+                pre_process(
+                    text
+                )
+            )
+        )
+    )
+
+    doc = nlp(text)
+
+    return True, doc
