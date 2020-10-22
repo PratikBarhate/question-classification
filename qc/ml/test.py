@@ -21,7 +21,7 @@ def get_predictions(rp: str, ml_algo: str):
     print("\n* Testing started - {0} model".format(ml_algo))
     pred = []
     # load all the trained models
-    crf, coarse_model = read_obj("coarse_model", rp + "/{0}".format(ml_algo).format(ml_algo))
+    crf, coarse_model = read_obj("coarse_model", rp + "/{0}".format(ml_algo))
     arf, abbr_model = read_obj("abbr_model", rp + "/{0}".format(ml_algo))
     drf, desc_model = read_obj("desc_model", rp + "/{0}".format(ml_algo))
     erf, enty_model = read_obj("enty_model", rp + "/{0}".format(ml_algo))
