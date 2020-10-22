@@ -16,10 +16,10 @@
 
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/) (UIUC's CogComp QC Dataset).
 
-1. Results from the empirical tests carried out, are in [results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md) file.
+1. Results from the empirical tests carried out, are in [results](documentation/Results.md) file.
 All the results are for `coarse:fine`, combined prediction class out of the total 50 classes, if not stated otherwise.
-2. More details about the execution/logic is available in [execution details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
-3. Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
+2. More details about the execution/logic is available in [execution details](documentation/Execution_Details.md).
+3. Diagrammatic representation of the data flow can be accessed [here](documentation/Data_Flow_diagram.pdf).
 
 * The data-flow is different for Neural Network, its only a single `coarse` model predicting for 
 all 50 different classes.
@@ -80,14 +80,14 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 #### Experimental Code
 
-1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/dataprep/text_features.py)
+1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`. [code location](qc/dataprep/text_features.py)
 2. The feature stack (what all data is to be feed to ML algorithm) can be modified/transformed/generated
-   in file `qc.dataprep.feature_stack`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/dataprep/feature_stack.py)
+   in file `qc.dataprep.feature_stack`. [code location](qc/dataprep/feature_stack.py)
 
    _These (point 1, 2) changes are used whenever you execute training process again.
    There is no need to execute `nlp` step again._
 
-3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/ml/train.py)
+3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. [code location](qc/ml/train.py)
 (Parameter tuning too can be done). *e.g* In the experimental part of the code add extra `elif` statement
 
    ```
@@ -115,7 +115,7 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 #### License
 
-[MIT](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
+[MIT](LICENSE)
 
 #### Credits
 
