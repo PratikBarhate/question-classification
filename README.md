@@ -1,13 +1,25 @@
+## Changes compared to original repository
+
+- former dependencies mentioned in README did not work for me
+- added requirements.txt with a up-to-date working list of dependencies
+- added simple setup using pyenv, venv and pip to simplify first setup
+- fixed NN on GPU
+- fixed binarizer
+- added coarse and fine accuracy to be printed in the test results
+- Fixed NN: decreased network size to fit in memory of a regular GPU, fixed loss function, output activation function softmax, used better optimizer. Added coarse - accuracy as a separate result. Reached ~89.4% coarse accuracy, ~82.8% fine accuracy with this setup.
+- Added simple API to classify questions via REST HTTP API endpoint.
+
+
 ## question-classification
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)    [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4a93dde781c5421d9078f49687df8bf1)](https://www.codacy.com/app/Pratik-Barhate/question-classification)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/PratikBarhate/question-classification/blob/master/LICENSE)
 
 Classifier for the question classification [dataset](http://cogcomp.org/Data/QA/QC/) (UIUC's CogComp QC Dataset).
 
-1. Results from the empirical tests carried out, are in [results](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Results.md) file.
+1. Results from the empirical tests carried out, are in [results](documentation/Results.md) file.
 All the results are for `coarse:fine`, combined prediction class out of the total 50 classes, if not stated otherwise.
-2. More details about the execution/logic is available in [execution details](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Execution_Details.md).
-3. Diagrammatic representation of the data flow can be accessed [here](https://github.com/Pratik-Barhate/question-classification/blob/master/documentation/Data_Flow_diagram.pdf).
+2. More details about the execution/logic is available in [execution details](documentation/Execution_Details.md).
+3. Diagrammatic representation of the data flow can be accessed [here](documentation/Data_Flow_diagram.pdf).
 
 * The data-flow is different for Neural Network, its only a single `coarse` model predicting for 
 all 50 different classes.
@@ -68,14 +80,14 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 #### Experimental Code
 
-1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/dataprep/text_features.py)
+1. The method to convert text data to ML features can be modified in function `qc.dataprep.text_features.get_vect`. [code location](qc/dataprep/text_features.py)
 2. The feature stack (what all data is to be feed to ML algorithm) can be modified/transformed/generated
-   in file `qc.dataprep.feature_stack`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/dataprep/feature_stack.py)
+   in file `qc.dataprep.feature_stack`. [code location](qc/dataprep/feature_stack.py)
 
    _These (point 1, 2) changes are used whenever you execute training process again.
    There is no need to execute `nlp` step again._
 
-3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. [code location](https://github.com/Pratik-Barhate/question-classification/blob/master/qc/ml/train.py)
+3. Machine learning algorithms can be added in function `qc.ml.train.train_one_node`. [code location](qc/ml/train.py)
 (Parameter tuning too can be done). *e.g* In the experimental part of the code add extra `elif` statement
 
    ```
@@ -103,7 +115,7 @@ _Check your systems' text encoding scheme. It is set to `text_file_encoding = "u
 
 #### License
 
-[MIT](https://github.com/Pratik-Barhate/question-classification/blob/master/LICENSE)
+[MIT](LICENSE)
 
 #### Credits
 
