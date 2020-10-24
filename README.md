@@ -1,15 +1,3 @@
-## Changes compared to original repository
-
-- former dependencies mentioned in README did not work for me
-- added requirements.txt with a up-to-date working list of dependencies
-- added simple setup using pyenv, venv and pip to simplify first setup
-- fixed NN on GPU
-- fixed binarizer
-- added coarse and fine accuracy to be printed in the test results
-- Fixed NN: decreased network size to fit in memory of a regular GPU, fixed loss function, output activation function softmax, used better optimizer. Added coarse - accuracy as a separate result. Reached ~89.4% coarse accuracy, ~82.8% fine accuracy with this setup.
-- Added simple API to classify questions via REST HTTP API endpoint.
-
-
 ## question-classification
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)    [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4a93dde781c5421d9078f49687df8bf1)](https://www.codacy.com/app/Pratik-Barhate/question-classification)    [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/PratikBarhate/question-classification/blob/master/LICENSE)
