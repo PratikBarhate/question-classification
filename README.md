@@ -12,15 +12,28 @@ All the results are for `coarse:fine`, combined prediction class out of the tota
 * The data-flow is different for Neural Network, its only a single `coarse` model predicting for 
 all 50 different classes.
 
-#### Dependencies used
+#### Install
 
-1. python - v3.6.3
-2. configobj - v5.0.6
-3. numpy - v1.15.0
-3. spaCy - v2.0.11 (with "en_core_web_lg" english model)
-4. scipy - v1.0.0
-5. scikit-learn - v0.19.1
-6. torch (PyTorch) - v0.4.0
+Python 3.6.3 required. See requirements.txt for the list of other dependencies or use pip (see below).
+
+Example Linux setup using pyenv to install an older Python version and venv for installing dependencies inside the project dir:
+ 
+```
+# Install and select Python 3.6.3
+pyenv install -v 3.6.3
+pyenv local 3.6.3
+
+# Create a project specific virtual envirtonment for installing dependencies
+python -m venv venv
+source venv/bin/activate
+
+# Update pip and install required dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# Download the english langiage model
+python -m spacy download en_core_web_lg
+```
 
 #### Execution
 
